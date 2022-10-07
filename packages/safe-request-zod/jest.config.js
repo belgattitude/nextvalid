@@ -1,6 +1,7 @@
 // @ts-check
 import { getTsconfig } from 'get-tsconfig';
 import { pathsToModuleNameMapper } from 'ts-jest';
+import { getJestCachePath } from '../../cache.config.mjs';
 
 const tsConfigFile = new URL('./tsconfig.json', import.meta.url).pathname;
 
@@ -23,13 +24,15 @@ const getTsConfigBasePaths = (tsConfigFile) => {
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 const config = {
-  displayName: `ts-utils:unit`,
-  preset: 'ts-jest/presets/default-esm',
+  cacheDirectory: getJestCachePath('safe-request-zod'),
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   verbose: true,
   rootDir: './src',
-  testMatch: ['<rootDir>/**/*.{spec,test}.{js,jsx,ts,tsx}'],
+  testMatch: ['<rootDir>/**/*.{spec,test}.{js,ts}'],
+  moduleNameMapper: {
+    ...getTsConfigBasePaths(tsConfigFile),
+  },
   transform: {
     '^.+\\.m?[tj]sx?$': [
       'ts-jest',
@@ -38,9 +41,7 @@ const config = {
       },
     ],
   },
-  moduleNameMapper: {
-    ...getTsConfigBasePaths(tsConfigFile),
-  },
+
   // false by default, overrides in cli, ie: yarn test:unit --collect-coverage=true
   collectCoverage: false,
   coverageDirectory: '<rootDir>/../coverage',

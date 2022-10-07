@@ -1,11 +1,3 @@
-/**
- * Convenience script to harmonize cache directories across various
- * tooling such as eslint and jest.
- *
- * Recently more & more tools like babel-loader tend to cache in
- * node_modules/.cache (@link https://github.com/avajs/find-cache-dir)
- * It's possible too.
- */
 // @ts-check
 'use strict';
 
@@ -25,6 +17,6 @@ function sanitize(packageName) {
  * @param {string} packageName
  * @returns string
  */
-export function getEslintCachePath(packageName) {
-  return `${globalCachePath}/eslint/${sanitize(packageName)}`;
+export function getJestCachePath(packageName) {
+  return `${globalCachePath}/jest/${sanitize(packageName)}`;
 }

@@ -1,12 +1,12 @@
 {
-  "name": "@next-helpers/parse-request",
+  "name": "@next-helpers/safe-request-zod",
   "version": "0.1.0",
   "license": "MIT",
   "homepage": "https://github.com/belgattitude/next-helpers",
   "repository": {
     "type": "git",
     "url": "https://github.com/belgattitude/next-helpers",
-    "directory": "packages/parse-request"
+    "directory": "packages/safe-request-zod"
   },
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -55,13 +55,23 @@
   "dependencies": {
     "zod": "^3.19.1"
   },
+  "peerDependencies": {
+    "@types/node": "*",
+    "next": "^11.0.0 || ^12.0.0 || ^13.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/node": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.10.0",
+    "@belgattitude/http-exception": "1.3.3",
     "@size-limit/file": "8.1.0",
     "@size-limit/webpack": "8.1.0",
     "@size-limit/webpack-why": "8.1.0",
-    "@types/jest": "29.1.1",
-    "@types/node": "18.7.23",
+    "@types/jest": "29.1.2",
+    "@types/node": "18.8.3",
     "@vitest/coverage-istanbul": "0.23.4",
     "@vitest/ui": "0.23.4",
     "cross-env": "7.0.3",
@@ -69,6 +79,7 @@
     "eslint": "8.24.0",
     "get-tsconfig": "4.2.0",
     "jest": "29.1.2",
+    "next": "^12.3.1",
     "npm-run-all": "4.1.5",
     "rimraf": "3.0.2",
     "rollup": "2.79.1",
@@ -80,7 +91,7 @@
     "typedoc": "0.23.15",
     "typedoc-plugin-markdown": "3.13.6",
     "typescript": "4.8.4",
-    "vite": "3.1.4",
+    "vite": "3.1.6",
     "vite-tsconfig-paths": "3.5.1",
     "vitest": "0.23.4",
     "webpack": "5.74.0"

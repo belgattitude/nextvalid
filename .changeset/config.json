@@ -1,9 +1,10 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.1.0/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
     { "repo": "belgattitude/next-helpers" }
   ],
+  "privatePackages": { "version": true, "tag": false },
   "commit": false,
   "linked": [],
   "access": "public",
