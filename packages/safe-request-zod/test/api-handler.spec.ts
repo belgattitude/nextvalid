@@ -2,23 +2,30 @@ import { z } from 'zod';
 import { safeRequest } from '../src/getSafeRequest';
 
 describe('Api handler tests', () => {
-  it('should work as expected', () => {
-    const req = {
-      method: 'GET',
-      query: {
-        hello: 'world',
-      },
-      headers: {},
-      cookies: {},
-    };
-    const safeReq = safeRequest(req);
-    const { query } = safeReq.parse({
-      method: 'GET',
-      query: {
-        hello: z.string(),
-      },
+  describe('when request payload is valid', () => {
+    it('should parse without error and return data', () => {
+      const exampleRequest = {
+        method: 'GET',
+        query: {
+          param1: 'world',
+        },
+        headers: {
+          accept:
+            'text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8',
+        },
+      };
+      const safeReq = safeRequest(exampleRequest);
+      const { query, headers } = safeReq.parse({
+        method: 'GET',
+        query: {
+          param1: z.string(),
+        },
+        headers: {
+          accept: z.string().regex(/^text\/html/),
+        },
+      });
+      expect(query.param1).toStrictEqual(exampleRequest.query.param1);
+      expect(headers.accept).toStrictEqual(exampleRequest.headers.accept);
     });
-    const { hello } = query;
-    expect(hello).toStrictEqual(req.query.hello);
   });
 });
