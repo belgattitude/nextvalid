@@ -18,13 +18,45 @@
 
 ## Documentation
 
-**👉 See full documentation on [https://belgattitude.github.io/http-exception](https://belgattitude.github.io/http-exception). 👈**
-
 ## Install
 
 ```bash
-npm install @next-helpers/parse-request  # via npm
-yarn add @next-helpers/parse-request     # via yarn
+npm install @next-helpers/parse-request --save  # via npm
+yarn add @next-helpers/parse-request            # via yarn
 ```
 
 ## Quick start
+
+### Api routes
+
+Define a schema
+
+```typescript
+import { z } from "zod";
+
+const reqSchema = z.object({
+  method: "GET",
+  query: z.object({
+    email: z.string().email("Invalid email"),
+  }),
+});
+
+const myApiRouteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+  // TODO
+  res.status(statusCode).json({
+    success: true,
+    data: {
+      statusCode: statusCode,
+      message: `${statusCode} is a not and error code, no reason to throw.`,
+    },
+  });
+};
+
+export default withApiErrorHandler({
+  logger: new ConsoleLogger(),
+})(statusHandler);
+```
+
+### SSR pages
+
+`getServerSideProps`, `getStaticProps`
