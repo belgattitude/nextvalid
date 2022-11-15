@@ -1,7 +1,13 @@
 // @ts-check
 'use strict';
 
-const { resolve } = require('path');
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+
+const { resolve } = require('node:path');
+const { fileURLToPath } = require('node:url');
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export const globalCachePath = resolve(`${__dirname}/.cache`);
 
