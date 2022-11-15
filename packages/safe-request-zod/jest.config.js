@@ -28,7 +28,7 @@ const config = {
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   verbose: true,
-  rootDir: './src',
+  rootDir: './',
   testMatch: ['<rootDir>/**/*.{spec,test}.{js,ts}'],
   moduleNameMapper: {
     ...getTsConfigBasePaths(tsConfigFile),
