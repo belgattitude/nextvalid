@@ -1,26 +1,12 @@
 import { HttpBadRequest } from '@belgattitude/http-exception';
 import { z } from 'zod';
 import { zodReq } from '../src';
-import type { ParsableApiRequest } from '../src';
-
-const giveMeARequest = (
-  req: Partial<ParsableApiRequest>
-): ParsableApiRequest => {
-  return {
-    ...req,
-    ...({
-      method: 'GET',
-      query: {},
-      cookies: {},
-      headers: {},
-    } as ParsableApiRequest),
-  };
-};
+import { giveMeANextJsRequest } from './_helpers';
 
 describe('Api handler tests', () => {
   describe('when request payload is valid', () => {
     it('should parse without error and return data', () => {
-      const req = giveMeARequest({
+      const req = giveMeANextJsRequest({
         query: {
           name: 'world',
           email: 'test@example.com',
@@ -47,7 +33,7 @@ describe('Api handler tests', () => {
     });
   });
   describe('when request payload is invalid', () => {
-    const req = giveMeARequest({
+    const req = giveMeANextJsRequest({
       query: {
         email: 'world',
       },

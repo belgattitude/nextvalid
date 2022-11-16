@@ -1,22 +1,25 @@
 {
-  "name": "@next-helpers/safe-request-zod",
+  "name": "@next-helpers/zod-request",
   "version": "0.1.0",
   "license": "MIT",
   "homepage": "https://github.com/belgattitude/next-helpers",
   "repository": {
     "type": "git",
     "url": "https://github.com/belgattitude/next-helpers",
-    "directory": "packages/safe-request-zod"
+    "directory": "packages/zod-request"
   },
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
   },
   "keywords": [
-    "request validator",
+    "nextjs",
+    "validation",
+    "zod",
+    "Request validation",
     "getServerSideProps",
-    "Nextjs api routes",
-    "zod"
+    "getStaticProps",
+    "Nextjs Api routes"
   ],
   "sideEffects": false,
   "type": "module",

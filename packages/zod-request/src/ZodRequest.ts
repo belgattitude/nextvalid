@@ -13,7 +13,7 @@ export class ZodRequest<
   TSchema extends NextApiRequestSchema,
   TReq extends Partial<ParsableApiRequest> = NextApiRequest
 > {
-  constructor(public readonly req: TReq, public readonly schema: TSchema) {}
+  constructor(private readonly req: TReq, private readonly schema: TSchema) {}
 
   parse = (
     params?: Params<TSchema>
