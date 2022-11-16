@@ -7,16 +7,32 @@ import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
 describe('Api handler tests', () => {
+  describe('when empty schema', () => {
+    it('should validate based on default GET method', () => {
+      const req = giveMeANextJsRequest({
+        method: 'GET',
+      });
+      const { method } = zodReq(req, {}).parse();
+      expect(method).toStrictEqual('GET');
+    });
+    it('should throw HttpMethodNotAllowed is not GET', () => {
+      const req = giveMeANextJsRequest({
+        method: 'POST',
+      });
+      expect(() => zodReq(req, {}).parse()).toThrow(HttpMethodNotAllowed);
+    });
+  });
+
   describe('when request payload is valid', () => {
+    it('should default to GET method', () => {});
     it('should parse without error and return data', () => {
       const req = giveMeANextJsRequest({
         query: {
-          name: 'world',
+          name: 'belgattitude',
           email: 'test@example.com',
         },
         headers: {
-          accept:
-            'text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8',
+          authorization: 'Bearer <my_token>',
         },
       });
       const schema = {
@@ -26,17 +42,32 @@ describe('Api handler tests', () => {
           email: z.string().email(),
         },
         headers: {
-          accept: z.string().regex(/^text\/html/),
+          authorization: z.string().startsWith('Bearer'),
         },
       } as const;
 
       const { query, headers, cookies, method } = zodReq(req, schema).parse();
       expect(method).toStrictEqual(req.method);
       expect(query).toStrictEqual(req.query);
-      expect(headers.accept).toStrictEqual(req.headers.accept);
+      expect(headers.authorization).toStrictEqual(req.headers.authorization);
       expect(cookies).toStrictEqual({});
     });
   });
+
+  describe('when method is not within allowed ones', () => {
+    it('should throw HttpMethodNotAllowed', () => {
+      const zr = zodReq(
+        giveMeANextJsRequest({
+          method: 'PATCH',
+        }),
+        {
+          method: ['GET', 'POST'],
+        }
+      );
+      expect(() => zr.parse()).toThrow(HttpMethodNotAllowed);
+    });
+  });
+
   describe('when method is invalid', () => {
     it('should throw HttpMethodNotAllowed', () => {
       const zr = zodReq(
@@ -44,14 +75,15 @@ describe('Api handler tests', () => {
           method: 'POST',
         }),
         {
-          method: ['GET'],
+          method: 'GET',
         }
       );
       expect(() => zr.parse()).toThrow(HttpMethodNotAllowed);
     });
   });
+
   describe('when query params are invalid', () => {
-    it('should throw HttpMethodNotAllowed', () => {
+    it('should throw HttpBadRequest', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
         query: {

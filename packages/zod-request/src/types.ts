@@ -26,7 +26,7 @@ export type IncomingHttpHeadersKeys =
   | keyof IncomingHttpHeaders;
 
 export type NextApiRequestSchema = {
-  method: HttpMethod | [HttpMethod];
+  method?: HttpMethod | HttpMethod[];
   query?: Record<string, ZodSchema>;
   cookies?: Record<string, ZodSchema>;
   headers?: Record<IncomingHttpHeadersKeys | string, ZodSchema>;
