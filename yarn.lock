@@ -1278,6 +1278,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@happy-next/zod-request@workspace:packages/zod-request":
+  version: 0.0.0-use.local
+  resolution: "@happy-next/zod-request@workspace:packages/zod-request"
+  dependencies:
+    "@belgattitude/eslint-config-bases": "npm:1.11.0"
+    "@belgattitude/http-exception": "npm:1.4.0"
+    "@size-limit/file": "npm:8.1.0"
+    "@size-limit/webpack": "npm:8.1.0"
+    "@size-limit/webpack-why": "npm:8.1.0"
+    "@types/jest": "npm:29.2.3"
+    "@types/node": "npm:18.11.9"
+    "@vitest/coverage-istanbul": "npm:0.25.2"
+    "@vitest/ui": "npm:0.25.2"
+    cross-env: "npm:7.0.3"
+    es-check: "npm:7.0.1"
+    eslint: "npm:8.27.0"
+    get-tsconfig: "npm:4.2.0"
+    jest: "npm:29.3.1"
+    next: "npm:^13.0.3"
+    npm-run-all: "npm:4.1.5"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    rimraf: "npm:3.0.2"
+    size-limit: "npm:8.1.0"
+    ts-jest: "npm:29.0.3"
+    tslib: "npm:2.4.1"
+    tsup: "npm:6.5.0"
+    typedoc: "npm:0.23.21"
+    typedoc-plugin-markdown: "npm:3.13.6"
+    typescript: "npm:4.9.3"
+    vite: "npm:3.2.4"
+    vite-tsconfig-paths: "npm:3.5.2"
+    vitest: "npm:0.25.2"
+    webpack: "npm:5.75.0"
+    zod: "npm:^3.19.1"
+  peerDependencies:
+    "@types/node": "*"
+    next: ^11.0.0 || ^12.0.0 || ^13.0.0
+    react: ^17.0.2 || ^18.2.0
+    react-dom: ^17.0.2 || ^18.2.0
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
 "@humanwhocodes/config-array@npm:^0.11.6":
   version: 0.11.7
   resolution: "@humanwhocodes/config-array@npm:0.11.7"
@@ -1657,56 +1707,6 @@ __metadata:
   checksum: f05907d1174ae28861eaa06d0efdc144f773d9a4b8b65e1e7cdc01eb93361d335351b4a336e05c6aac02661be39e8809a3f7ad28bc67b6b338071434ab442130
   languageName: node
   linkType: hard
-
-"@next-helpers/zod-request@workspace:packages/zod-request":
-  version: 0.0.0-use.local
-  resolution: "@next-helpers/zod-request@workspace:packages/zod-request"
-  dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.11.0"
-    "@belgattitude/http-exception": "npm:1.4.0"
-    "@size-limit/file": "npm:8.1.0"
-    "@size-limit/webpack": "npm:8.1.0"
-    "@size-limit/webpack-why": "npm:8.1.0"
-    "@types/jest": "npm:29.2.3"
-    "@types/node": "npm:18.11.9"
-    "@vitest/coverage-istanbul": "npm:0.25.2"
-    "@vitest/ui": "npm:0.25.2"
-    cross-env: "npm:7.0.3"
-    es-check: "npm:7.0.1"
-    eslint: "npm:8.27.0"
-    get-tsconfig: "npm:4.2.0"
-    jest: "npm:29.3.1"
-    next: "npm:^13.0.3"
-    npm-run-all: "npm:4.1.5"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    rimraf: "npm:3.0.2"
-    size-limit: "npm:8.1.0"
-    ts-jest: "npm:29.0.3"
-    tslib: "npm:2.4.1"
-    tsup: "npm:6.5.0"
-    typedoc: "npm:0.23.21"
-    typedoc-plugin-markdown: "npm:3.13.6"
-    typescript: "npm:4.9.3"
-    vite: "npm:3.2.4"
-    vite-tsconfig-paths: "npm:3.5.2"
-    vitest: "npm:0.25.2"
-    webpack: "npm:5.75.0"
-    zod: "npm:^3.19.1"
-  peerDependencies:
-    "@types/node": "*"
-    next: ^11.0.0 || ^12.0.0 || ^13.0.0
-    react: ^17.0.2 || ^18.2.0
-    react-dom: ^17.0.2 || ^18.2.0
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  languageName: unknown
-  linkType: soft
 
 "@next/env@npm:13.0.3":
   version: 13.0.3

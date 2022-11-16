@@ -1,4 +1,7 @@
-import { HttpBadRequest } from '@belgattitude/http-exception';
+import {
+  HttpBadRequest,
+  HttpMethodNotAllowed,
+} from '@belgattitude/http-exception';
 import { z } from 'zod';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
@@ -25,26 +28,43 @@ describe('Api handler tests', () => {
         headers: {
           accept: z.string().regex(/^text\/html/),
         },
-      };
+      } as const;
 
-      const { query, headers } = zodReq(req, schema).parse();
+      const { query, headers, cookies, method } = zodReq(req, schema).parse();
+      expect(method).toStrictEqual(req.method);
       expect(query).toStrictEqual(req.query);
       expect(headers.accept).toStrictEqual(req.headers.accept);
+      expect(cookies).toStrictEqual({});
     });
   });
-  describe('when request payload is invalid', () => {
-    const req = giveMeANextJsRequest({
-      query: {
-        email: 'world',
-      },
+  describe('when method is invalid', () => {
+    it('should throw HttpMethodNotAllowed', () => {
+      const zr = zodReq(
+        giveMeANextJsRequest({
+          method: 'POST',
+        }),
+        {
+          method: ['GET'],
+        }
+      );
+      expect(() => zr.parse()).toThrow(HttpMethodNotAllowed);
     });
-    const schema = {
-      method: 'GET',
-      query: {
-        email: z.string().email(),
-      },
-    };
-    const zr = zodReq(req, schema);
-    expect(() => zr.parse()).toThrow(HttpBadRequest);
+  });
+  describe('when query params are invalid', () => {
+    it('should throw HttpMethodNotAllowed', () => {
+      const req = giveMeANextJsRequest({
+        method: 'GET',
+        query: {
+          email: 'invalid-email.com',
+        },
+      });
+      const zr = zodReq(req, {
+        method: 'GET',
+        query: {
+          email: z.string().email('Invalid email'),
+        },
+      });
+      expect(() => zr.parse()).toThrow(HttpBadRequest);
+    });
   });
 });

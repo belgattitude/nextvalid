@@ -1,11 +1,11 @@
 {
-  "name": "@next-helpers/zod-request",
+  "name": "@happy-next/zod-request",
   "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/belgattitude/next-helpers",
+  "homepage": "https://github.com/belgattitude/happy-next",
   "repository": {
     "type": "git",
-    "url": "https://github.com/belgattitude/next-helpers",
+    "url": "https://github.com/belgattitude/happy-next",
     "directory": "packages/zod-request"
   },
   "author": {
@@ -23,6 +23,7 @@
   ],
   "sideEffects": false,
   "type": "module",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",

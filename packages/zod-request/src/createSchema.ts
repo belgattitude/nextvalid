@@ -1,12 +1,12 @@
-import type { ZodObject, ZodSchema } from 'zod';
+import type { ZodObject, ZodSchema, ZodEnum } from 'zod';
 import { z } from 'zod';
-import type { NextApiRequestSchema } from './types';
+import type { NextApiRequestSchema, TupleOfHttpMethods } from './types';
 
 export const createSchema = <T extends NextApiRequestSchema>(
   schema: T
 ): ZodObject<{
-  method: ZodSchema<T['method']>;
-  // query: ZodSchema<T['query']>;
+  // method: ZodEnum<T['method'] extends TupleOfHttpMethods ? T['method'] : [T['method']]>;
+  method: ZodEnum<TupleOfHttpMethods>;
   query: T['query'] extends undefined
     ? ZodSchema<Record<string, unknown>>
     : ZodSchema<T['query']>;
@@ -18,8 +18,9 @@ export const createSchema = <T extends NextApiRequestSchema>(
     : ZodSchema<T['cookies']>;
 }> => {
   const { query, cookies, headers, method } = schema;
+
   return z.object({
-    method: z.string(),
+    method: z.enum(typeof method === 'string' ? [method] : method),
     query: query !== undefined ? z.object(query) : z.object({}),
     headers: headers !== undefined ? z.object(headers) : z.object({}),
     cookies: cookies !== undefined ? z.object(cookies) : z.object({}),
