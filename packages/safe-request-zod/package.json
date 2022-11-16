@@ -46,6 +46,8 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/parse-request.eslintcache",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
     "check-dist": "es-check -v",
+    "check-size": "size-limit",
+    "check-size-why": "size-limit --why",
     "test": "vitest run",
     "test-unit": "vitest run",
     "test-unit-watch": "vitest --ui",
@@ -53,13 +55,14 @@
     "fix-all-files": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix"
   },
   "dependencies": {
+    "@belgattitude/http-exception": "^1.4.0",
     "zod": "^3.19.1"
   },
   "peerDependencies": {
     "@types/node": "*",
     "next": "^11.0.0 || ^12.0.0 || ^13.0.0",
-    "react": "^17.0.2 || ^18.0.0",
-    "react-dom": "^17.0.2 || ^18.0.0"
+    "react": "^17.0.2 || ^18.2.0",
+    "react-dom": "^17.0.2 || ^18.2.0"
   },
   "peerDependenciesMeta": {
     "@types/node": {
@@ -92,8 +95,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "3.0.2",
-    "rollup": "3.3.0",
-    "rollup-plugin-dts": "5.0.0",
     "size-limit": "8.1.0",
     "ts-jest": "29.0.3",
     "tslib": "2.4.1",
