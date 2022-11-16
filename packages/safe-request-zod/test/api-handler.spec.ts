@@ -1,12 +1,26 @@
 import { HttpBadRequest } from '@belgattitude/http-exception';
 import { z } from 'zod';
-import { safeRequest } from '../src/getSafeRequest';
+import { zodReq } from '../src';
+import type { ParsableApiRequest } from '../src';
+
+const giveMeARequest = (
+  req: Partial<ParsableApiRequest>
+): ParsableApiRequest => {
+  return {
+    ...req,
+    ...({
+      method: 'GET',
+      query: {},
+      cookies: {},
+      headers: {},
+    } as ParsableApiRequest),
+  };
+};
 
 describe('Api handler tests', () => {
   describe('when request payload is valid', () => {
     it('should parse without error and return data', () => {
-      const exampleRequest = {
-        method: 'GET',
+      const req = giveMeARequest({
         query: {
           name: 'world',
           email: 'test@example.com',
@@ -15,10 +29,8 @@ describe('Api handler tests', () => {
           accept:
             'text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8',
         },
-        cookies: {},
-      };
-      const safeReq = safeRequest(exampleRequest);
-      const { query, headers } = safeReq.parse({
+      });
+      const schema = {
         method: 'GET',
         query: {
           name: z.string(),
@@ -27,25 +39,26 @@ describe('Api handler tests', () => {
         headers: {
           accept: z.string().regex(/^text\/html/),
         },
-      });
-      expect(query).toStrictEqual(exampleRequest.query);
-      expect(headers.accept).toStrictEqual(exampleRequest.headers.accept);
+      };
+
+      const { query, headers } = zodReq(req, schema).parse();
+      expect(query).toStrictEqual(req.query);
+      expect(headers.accept).toStrictEqual(req.headers.accept);
     });
   });
   describe('when request payload is invalid', () => {
-    const invalidRequest = {
-      method: 'GET',
+    const req = giveMeARequest({
       query: {
         email: 'world',
       },
-    };
-    const safeReq = safeRequest(invalidRequest);
+    });
     const schema = {
       method: 'GET',
       query: {
         email: z.string().email(),
       },
     };
-    expect(() => safeReq.parse(schema)).toThrow(HttpBadRequest);
+    const zr = zodReq(req, schema);
+    expect(() => zr.parse()).toThrow(HttpBadRequest);
   });
 });

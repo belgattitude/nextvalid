@@ -9,17 +9,17 @@ type Params<T> = {
   onError?: (error: z.ZodError<T>) => Error | HttpException;
 };
 
-export class SafeRequest<
+export class ZodRequest<
+  TSchema extends NextApiRequestSchema,
   TReq extends Partial<ParsableApiRequest> = NextApiRequest
 > {
-  constructor(public readonly req: TReq) {}
+  constructor(public readonly req: TReq, public readonly schema: TSchema) {}
 
-  parse = <T extends NextApiRequestSchema>(
-    schema: T,
-    params?: Params<T>
-  ): z.infer<ReturnType<typeof createSchema<T>>> => {
+  parse = (
+    params?: Params<TSchema>
+  ): z.infer<ReturnType<typeof createSchema<TSchema>>> => {
     const { onError } = params ?? {};
-    const validation = createSchema(schema);
+    const validation = createSchema(this.schema);
     const parsed = validation.safeParse(this.req);
     if (!parsed.success) {
       const { error } = parsed;
