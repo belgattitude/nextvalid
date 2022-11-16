@@ -3,7 +3,7 @@ import {
   HttpMethodNotAllowed,
 } from '@belgattitude/http-exception';
 import type { NextApiRequest } from 'next';
-import type { z, ZodIssue, ZodError } from 'zod';
+import type { z, ZodError } from 'zod';
 
 import { createSchema } from './createSchema';
 import type {

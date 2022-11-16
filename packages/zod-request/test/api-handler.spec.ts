@@ -24,7 +24,6 @@ describe('Api handler tests', () => {
   });
 
   describe('when request payload is valid', () => {
-    it('should default to GET method', () => {});
     it('should parse without error and return data', () => {
       const req = giveMeANextJsRequest({
         query: {

@@ -1,4 +1,4 @@
 import type z from 'zod';
-export const serializeZodError = (error: z.ZodError) => {
+export const serializeZodError = (_error: z.ZodError) => {
   return 'cool';
 };
