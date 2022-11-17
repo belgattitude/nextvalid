@@ -1,5 +1,5 @@
 import type { ZodError, ZodIssue } from 'zod';
-import type { NextApiRequestSchema } from './types';
+import type { RequestSchema } from './types';
 
 export class ZodRequestError<TZodError extends ZodError> {
   public requestError: {
@@ -15,7 +15,7 @@ export class ZodRequestError<TZodError extends ZodError> {
     const { query, cookies, headers, method } = this.requestError;
     return [method.length > 0 ? 'method' : null].filter((v) => v);
   }
-  private getError(): Record<keyof NextApiRequestSchema, ZodIssue[]> {
+  private getError(): Record<keyof RequestSchema, ZodIssue[]> {
     return {
       method: [
         {

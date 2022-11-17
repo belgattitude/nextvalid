@@ -1,14 +1,14 @@
 import type { ZodSchema, ZodEnum, ZodObject, ZodType } from 'zod';
 import { z } from 'zod';
 import type {
-  NextApiRequestSchema,
+  RequestSchema,
   ParsableApiRequest,
   TupleOfHttpMethods,
 } from './types';
 
 const defaultMethod = 'GET';
 
-export const createSchema = <T extends NextApiRequestSchema>(
+export const createSchema = <T extends RequestSchema>(
   schema: T
 ): ZodObject<{
   // method: ZodEnum<T['method'] extends TupleOfHttpMethods ? T['method'] : [T['method']]>;

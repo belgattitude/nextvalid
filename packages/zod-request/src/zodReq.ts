@@ -1,27 +1,29 @@
-import type { NextApiRequest } from 'next';
-import type {
-  ParsableApiRequest,
-  NextApiRequestSchema,
-  HttpMethod,
-} from './types';
+import { z } from 'zod';
+import type { ParsableApiRequest, RequestSchema } from './types';
 import { ZodRequest } from './ZodRequest';
 
-export const zodReq = <
-  TSchema extends Partial<NextApiRequestSchema>,
-  TReq extends Partial<ParsableApiRequest> = NextApiRequest & {
-    method: HttpMethod | string;
-  }
->(
-  req: TReq,
-  schema: TSchema
-) => {
-  const defaultSchema = {
-    headers: {},
-    query: {},
-    method: 'GET',
-    cookies: {},
-  } as const;
-  const s = { ...defaultSchema, ...schema };
+type RequestSchemaWithoutMethod = Omit<RequestSchema, 'method'> & {
+  method?: RequestSchema['method'] | undefined;
+};
 
-  return new ZodRequest(req, s);
+export const zodReq = <
+  R extends ParsableApiRequest,
+  S extends Partial<RequestSchemaWithoutMethod>
+>(
+  req: R,
+  schema: S
+) => {
+  const defaultMethod = 'GET';
+
+  return new ZodRequest({
+    ...{
+      method: z.enum([defaultMethod]),
+      headers: {},
+      query: {},
+      cookies: {},
+    },
+    ...schema,
+  }).parse({
+    ...req,
+  });
 };

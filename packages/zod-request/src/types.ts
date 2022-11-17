@@ -1,6 +1,6 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { NextApiRequest } from 'next';
-import type { ZodSchema, ZodType } from 'zod';
+import type { ZodType } from 'zod';
 import type { httpMethods } from './httpMethods';
 
 export type HttpMethod = typeof httpMethods[number];
@@ -25,15 +25,20 @@ export type IncomingHttpHeadersKeys =
   | keyof AdditionalRequestHeaders
   | keyof IncomingHttpHeaders;
 
-export type NextApiRequestSchema = {
-  method: HttpMethod | HttpMethod[];
+export type RequestSchema = {
+  // Till typescript 4.9 satisfies support
+  method:
+    | Readonly<HttpMethod>
+    | HttpMethod
+    | Readonly<HttpMethod[]>
+    | HttpMethod[];
   query: Record<string, ZodType>;
-  cookies: Record<string, ZodType>;
   headers: Record<IncomingHttpHeadersKeys | string, ZodType>;
+  cookies: Record<string, ZodType>;
 };
 
 export type ParsableApiRequest = Pick<
   NextApiRequest,
   'query' | 'cookies' | 'headers'
 > &
-  Pick<IncomingMessage, 'url'> & { method: HttpMethod | string };
+  Pick<IncomingMessage, 'url'> & { method: HttpMethod | 'string' };

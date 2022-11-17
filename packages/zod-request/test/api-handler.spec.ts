@@ -4,7 +4,7 @@ import {
 } from '@belgattitude/http-exception';
 import type { ZodNumber } from 'zod';
 import { z } from 'zod';
-import type { NextApiRequestSchema } from '../src';
+import type { RequestSchema } from '../src';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
@@ -16,14 +16,19 @@ describe('Api handler tests', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
       });
-      const { method } = zodReq(req, {}).parse();
+      const { method } = zodReq(req, {
+        // method: 'GET',
+        cookies: {},
+        query: {},
+        headers: {},
+      });
       expect(method).toStrictEqual('GET');
     });
     it('should throw HttpMethodNotAllowed is not GET', () => {
       const req = giveMeANextJsRequest({
         method: 'POST',
       });
-      expect(() => zodReq(req, {}).parse()).toThrow(HttpMethodNotAllowed);
+      expect(() => zodReq(req, {})).toThrow(HttpMethodNotAllowed);
     });
   });
 
@@ -50,7 +55,7 @@ describe('Api handler tests', () => {
         },
       } as const;
 
-      const { query, headers, cookies, method } = zodReq(req, schema).parse();
+      const { query, headers, cookies, method } = zodReq(req, schema);
       expect(method).toStrictEqual(req.method);
       expect(query).toStrictEqual(req.query);
       expect(typeof query.email).toStrictEqual('string');
@@ -61,29 +66,31 @@ describe('Api handler tests', () => {
 
   describe('when method is not within allowed ones', () => {
     it('should throw HttpMethodNotAllowed', () => {
-      const zr = zodReq(
-        giveMeANextJsRequest({
-          method: 'PATCH',
-        }),
-        {
-          method: ['GET', 'POST'],
-        }
-      );
-      expect(() => zr.parse()).toThrow(HttpMethodNotAllowed);
+      expect(() => {
+        zodReq(
+          giveMeANextJsRequest({
+            method: 'PATCH',
+          }),
+          {
+            method: ['GET', 'POST'],
+          }
+        );
+      }).toThrow(HttpMethodNotAllowed);
     });
   });
 
   describe('when method is invalid', () => {
     it('should throw HttpMethodNotAllowed', () => {
-      const zr = zodReq(
-        giveMeANextJsRequest({
-          method: 'POST',
-        }),
-        {
-          method: 'GET',
-        }
-      );
-      expect(() => zr.parse()).toThrow(HttpMethodNotAllowed);
+      expect(() =>
+        zodReq(
+          giveMeANextJsRequest({
+            method: 'POST',
+          }),
+          {
+            method: 'GET',
+          }
+        )
+      ).toThrow(HttpMethodNotAllowed);
     });
   });
 
@@ -95,13 +102,14 @@ describe('Api handler tests', () => {
           email: 'invalid-email.com',
         },
       });
-      const zr = zodReq(req, {
-        method: 'GET',
-        query: {
-          email: z.string().email('Invalid email'),
-        },
-      });
-      expect(() => zr.parse()).toThrow(HttpBadRequest);
+      expect(() =>
+        zodReq(req, {
+          method: 'GET',
+          query: {
+            email: z.string().email('Invalid email'),
+          },
+        })
+      ).toThrow(HttpBadRequest);
     });
   });
 
@@ -168,10 +176,7 @@ describe('Api handler tests', () => {
         },
       } as const;
 
-      const { query } = zodReq(
-        req,
-        schema as unknown as NextApiRequestSchema
-      ).parse();
+      const { query } = zodReq(req, schema as unknown as RequestSchema);
       expect(query.stringToInt).toStrictEqual(100);
       expect(typeof query.stringToInt).toStrictEqual('number');
       expect(query.regexp).toStrictEqual(req.query.regexp);
