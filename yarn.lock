@@ -1021,9 +1021,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@examples/basic-nextjs-app@workspace:examples/basic-nextjs-app":
+"@examples/basic-nextjs-app@workspace:examples/nextjs-simple":
   version: 0.0.0-use.local
-  resolution: "@examples/basic-nextjs-app@workspace:examples/basic-nextjs-app"
+  resolution: "@examples/basic-nextjs-app@workspace:examples/nextjs-simple"
   dependencies:
     "@belgattitude/eslint-config-bases": "npm:1.11.0"
     "@belgattitude/http-exception": "npm:1.4.0"
