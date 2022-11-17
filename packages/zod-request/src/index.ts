@@ -7,3 +7,4 @@ export type {
   HttpMethod,
   IncomingHttpHeadersKeys,
 } from './types';
+export { mapRequestSchemaToZod } from './utils';

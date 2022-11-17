@@ -7,12 +7,11 @@ import { zodReq } from '@happy-next/zod-request';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { withApiErrorHandler } from '@/backend';
-import { zodStringToInt, ConsoleLogger } from '@/lib';
+import { ConsoleLogger } from '@/lib';
 
 const reqSchema = {
   method: 'GET',
   query: {
-    // statusCode: zodStringToInt().number().min(100).max(599),
     statusCode: z.preprocess((input) => {
       const processed = z
         .string()
