@@ -1,27 +1,9 @@
-import type { ZodTypeAny } from 'zod';
-import { z } from 'zod';
-
-export const zodStringToInt = (schema: ZodTypeAny) => {
-  const a = z.preprocess((v): number | undefined => {
-    if (typeof v === 'string') {
-      return Number.parseInt(v, 10);
-    } else if (typeof v === 'number') {
-      return v;
+export const zodStringToInt = (arg: unknown) => {
+  if (typeof arg === 'string') {
+    const number = Number.parseInt(arg, 10);
+    if (!isNaN(number)) {
+      return number;
     }
-    return undefined;
-  }, schema);
-  console.log(a);
-  return a;
+  }
+  return arg;
 };
-
-/*
-export const zodStringToInt = (v: unknown) => {
-  return z.transform((val) => {
-    if (typeof v === 'string') {
-      return parseInt(v, 10);
-    }
-    if (typeof v === 'number') return v;
-    return undefined;
-  });
-};
-*/

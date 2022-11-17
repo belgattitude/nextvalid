@@ -41,4 +41,4 @@ export type ParsableApiRequest = Pick<
   NextApiRequest,
   'query' | 'cookies' | 'headers'
 > &
-  Pick<IncomingMessage, 'url'> & { method: HttpMethod | 'string' };
+  Pick<IncomingMessage, 'url'> & { method?: HttpMethod | string | undefined };

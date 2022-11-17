@@ -23,7 +23,16 @@ export const zodReq = <
       cookies: {},
     },
     ...schema,
-  }).parse({
-    ...req,
-  });
+  }).parse(hackForNextJsReq(req));
+};
+
+// Haven't had the time investigate this. If we send the req directly nextjs
+// goes BOOM with a 500.
+const hackForNextJsReq = (req: ParsableApiRequest): ParsableApiRequest => {
+  return {
+    method: req.method,
+    headers: req.headers,
+    query: req.query,
+    cookies: req.cookies,
+  };
 };
