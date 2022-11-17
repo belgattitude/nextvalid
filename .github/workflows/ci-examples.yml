@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Pre build packages
-        run: yarn workspaces foreach -v --from '@next-helpers/*' run build
+        run: yarn workspaces foreach -v --exclude '@examples/*' --no-private run build
 
       - name: Typecheck (path aliases)
         run: yarn workspaces foreach -v --from '@examples/*' run typecheck
