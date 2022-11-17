@@ -19,7 +19,7 @@
     "paths": {
       "@/backend": ["./src/backend/index"],
       "@/lib": ["./src/lib/index"],
-      "@next-helpers/parse-request": ["../../packages/parse-request/src/index"]
+      "@happy-next/zod-request": ["../../packages/zod-request/src/index"]
     }
   },
   "include": [

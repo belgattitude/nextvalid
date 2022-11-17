@@ -3,7 +3,7 @@ import {
   HttpMethodNotAllowed,
 } from '@belgattitude/http-exception';
 import type { NextApiRequest } from 'next';
-import type { z, ZodError } from 'zod';
+import type { ZodError } from 'zod';
 
 import { createSchema } from './createSchema';
 import type {
@@ -27,7 +27,8 @@ export class ZodRequest<
 
   parse = (
     params?: Params<ZodError<TSchema>>
-  ): z.infer<ReturnType<typeof createSchema<TSchema>>> => {
+    // ): z.infer<ReturnType<typeof createSchema<TSchema>>> => {
+  ) => {
     const { onError } = params ?? {};
     const validation = createSchema(this.schema);
     const parsed = validation.safeParse(this.req);

@@ -1,6 +1,10 @@
-import type { ZodObject, ZodSchema, ZodEnum } from 'zod';
+import type { ZodSchema, ZodEnum, ZodObject, ZodType } from 'zod';
 import { z } from 'zod';
-import type { NextApiRequestSchema, TupleOfHttpMethods } from './types';
+import type {
+  NextApiRequestSchema,
+  ParsableApiRequest,
+  TupleOfHttpMethods,
+} from './types';
 
 const defaultMethod = 'GET';
 
@@ -9,6 +13,7 @@ export const createSchema = <T extends NextApiRequestSchema>(
 ): ZodObject<{
   // method: ZodEnum<T['method'] extends TupleOfHttpMethods ? T['method'] : [T['method']]>;
   method: ZodEnum<TupleOfHttpMethods>;
+  // query: z.infer<ReturnType<typeof createPlainObject<T['query']>>>;
   query: T['query'] extends undefined
     ? ZodSchema<Record<string, unknown>>
     : ZodSchema<T['query']>;

@@ -1,5 +1,4 @@
 import type { NextApiRequest } from 'next';
-
 import type {
   ParsableApiRequest,
   NextApiRequestSchema,
@@ -8,13 +7,21 @@ import type {
 import { ZodRequest } from './ZodRequest';
 
 export const zodReq = <
-  TSchema extends NextApiRequestSchema,
+  TSchema extends Partial<NextApiRequestSchema>,
   TReq extends Partial<ParsableApiRequest> = NextApiRequest & {
-    method: HttpMethod;
+    method: HttpMethod | string;
   }
 >(
   req: TReq,
   schema: TSchema
 ) => {
-  return new ZodRequest(req, schema);
+  const defaultSchema = {
+    headers: {},
+    query: {},
+    method: 'GET',
+    cookies: {},
+  } as const;
+  const s = { ...defaultSchema, ...schema };
+
+  return new ZodRequest(req, s);
 };

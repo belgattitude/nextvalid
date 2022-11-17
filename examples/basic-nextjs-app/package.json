@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@belgattitude/http-exception": "1.4.0",
+    "@happy-next/zod-request": "workspace:^",
     "axios": "1.1.3",
     "ky": "0.32.2",
     "next": "13.0.3",

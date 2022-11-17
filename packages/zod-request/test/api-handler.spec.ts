@@ -2,12 +2,16 @@ import {
   HttpBadRequest,
   HttpMethodNotAllowed,
 } from '@belgattitude/http-exception';
+import type { ZodNumber } from 'zod';
 import { z } from 'zod';
+import type { NextApiRequestSchema } from '../src';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
 describe('Api handler tests', () => {
   describe('when empty schema', () => {
+    const stringToNumber = z.string().transform((val) => val.length);
+
     it('should validate based on default GET method', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
@@ -26,6 +30,7 @@ describe('Api handler tests', () => {
   describe('when request payload is valid', () => {
     it('should parse without error and return data', () => {
       const req = giveMeANextJsRequest({
+        method: 'GET',
         query: {
           name: 'belgattitude',
           email: 'test@example.com',
@@ -48,6 +53,7 @@ describe('Api handler tests', () => {
       const { query, headers, cookies, method } = zodReq(req, schema).parse();
       expect(method).toStrictEqual(req.method);
       expect(query).toStrictEqual(req.query);
+      expect(typeof query.email).toStrictEqual('string');
       expect(headers.authorization).toStrictEqual(req.headers.authorization);
       expect(cookies).toStrictEqual({});
     });
@@ -96,6 +102,79 @@ describe('Api handler tests', () => {
         },
       });
       expect(() => zr.parse()).toThrow(HttpBadRequest);
+    });
+  });
+
+  describe('When using advanced types', () => {
+    it('should work with preprocess and ZodEffects', () => {
+      const stringToNumber = (arg: unknown): number => {
+        if (typeof arg === 'string') {
+          const number = Number(arg);
+          if (!isNaN(number)) {
+            return number;
+          }
+        }
+        throw new Error('pas cool');
+      };
+
+      const stringToNumberSchema = (def: number) =>
+        z.string().default(`${def}`).transform(Number);
+      const safePreprocessor =
+        <O, Z extends z.ZodType<O>>(preprocessorSchema: Z) =>
+        (val: unknown): O | null => {
+          const parsed = preprocessorSchema.safeParse(val);
+          if (!parsed.success) {
+            return null;
+          }
+          return parsed.data;
+        };
+
+      const req = giveMeANextJsRequest({
+        query: {
+          regexp: 'belgattitude',
+          stringToInt: '100',
+        },
+      });
+
+      function integerString<
+        TSchema extends ZodNumber | z.ZodOptional<ZodNumber>
+      >(schema: TSchema) {
+        return z.preprocess(
+          (value) =>
+            typeof value === 'string'
+              ? parseInt(value, 10)
+              : typeof value === 'number'
+              ? value
+              : undefined,
+          schema
+        );
+      }
+      const schema = {
+        query: {
+          regexp: z.string().regex(/belg/i),
+          // stringToInt: z.preprocess(stringToNumber, z.number().int().min(100)),
+          // stringToInt: z.preprocess(
+          //  safePreprocessor(stringToNumberSchema(0)),
+          //  z.number().min(100)
+          // stringToInt: integerString(z.number().max(10).optional()),
+          stringToInt: z.preprocess((input) => {
+            const processed = z
+              .string()
+              .regex(/^\d+$/)
+              .transform(Number)
+              .safeParse(input);
+            return processed.success ? processed.data : input;
+          }, z.number().min(0)),
+        },
+      } as const;
+
+      const { query } = zodReq(
+        req,
+        schema as unknown as NextApiRequestSchema
+      ).parse();
+      expect(query.stringToInt).toStrictEqual(100);
+      expect(typeof query.stringToInt).toStrictEqual('number');
+      expect(query.regexp).toStrictEqual(req.query.regexp);
     });
   });
 });

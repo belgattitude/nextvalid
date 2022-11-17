@@ -1,6 +1,6 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { NextApiRequest } from 'next';
-import type { ZodSchema } from 'zod';
+import type { ZodSchema, ZodType } from 'zod';
 import type { httpMethods } from './httpMethods';
 
 export type HttpMethod = typeof httpMethods[number];
@@ -26,14 +26,14 @@ export type IncomingHttpHeadersKeys =
   | keyof IncomingHttpHeaders;
 
 export type NextApiRequestSchema = {
-  method?: HttpMethod | HttpMethod[];
-  query?: Record<string, ZodSchema>;
-  cookies?: Record<string, ZodSchema>;
-  headers?: Record<IncomingHttpHeadersKeys | string, ZodSchema>;
+  method: HttpMethod | HttpMethod[];
+  query: Record<string, ZodType>;
+  cookies: Record<string, ZodType>;
+  headers: Record<IncomingHttpHeadersKeys | string, ZodType>;
 };
 
 export type ParsableApiRequest = Pick<
   NextApiRequest,
   'query' | 'cookies' | 'headers'
 > &
-  Pick<IncomingMessage, 'url'> & { method: HttpMethod };
+  Pick<IncomingMessage, 'url'> & { method: HttpMethod | string };
