@@ -11,9 +11,10 @@
 ### Type Aliases
 
 - [HttpMethod](README.md#httpmethod)
+- [HttpMethods](README.md#httpmethods)
 - [IncomingHttpHeadersKeys](README.md#incominghttpheaderskeys)
-- [NextApiRequestSchema](README.md#nextapirequestschema)
 - [ParsableApiRequest](README.md#parsableapirequest)
+- [RequestSchema](README.md#requestschema)
 
 ### Functions
 
@@ -27,6 +28,12 @@
 
 ---
 
+### HttpMethods
+
+Ƭ **HttpMethods**: typeof `httpMethods`
+
+---
+
 ### IncomingHttpHeadersKeys
 
 Ƭ **IncomingHttpHeadersKeys**: keyof `AdditionalRequestHeaders` \| keyof `IncomingHttpHeaders`
@@ -37,45 +44,45 @@ https://developer.mozilla.org/en-US/docs/Glossary/Request_header
 
 ---
 
-### NextApiRequestSchema
+### ParsableApiRequest
 
-Ƭ **NextApiRequestSchema**: `Object`
-
-#### Type declaration
-
-| Name       | Type                                                                                               |
-| :--------- | :------------------------------------------------------------------------------------------------- |
-| `cookies?` | `Record`<`string`, `ZodSchema`\>                                                                   |
-| `headers?` | `Record`<[`IncomingHttpHeadersKeys`](README.md#incominghttpheaderskeys) \| `string`, `ZodSchema`\> |
-| `method`   | `string`                                                                                           |
-| `query?`   | `Record`<`string`, `ZodSchema`\>                                                                   |
+Ƭ **ParsableApiRequest**: `Pick`<`NextApiRequest`, `"query"` \| `"cookies"` \| `"headers"`\> & `Pick`<`IncomingMessage`, `"url"`\> & { `method?`: [`HttpMethod`](README.md#httpmethod) \| `string` }
 
 ---
 
-### ParsableApiRequest
+### RequestSchema
 
-Ƭ **ParsableApiRequest**: `Pick`<`NextApiRequest`, `"query"` \| `"cookies"` \| `"headers"` \| `"method"`\> & `Pick`<`IncomingMessage`, `"url"`\>
+Ƭ **RequestSchema**: `Object`
+
+#### Type declaration
+
+| Name      | Type                                                                                                                                                                                       |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cookies` | `Record`<`string`, `ZodType`\>                                                                                                                                                             |
+| `headers` | `Record`<[`IncomingHttpHeadersKeys`](README.md#incominghttpheaderskeys) \| `string`, `ZodType`\>                                                                                           |
+| `method`  | `Readonly`<[`HttpMethod`](README.md#httpmethod)\> \| [`HttpMethod`](README.md#httpmethod) \| `Readonly`<[`HttpMethod`](README.md#httpmethod)[]\> \| [`HttpMethod`](README.md#httpmethod)[] |
+| `query`   | `Record`<`string`, `ZodType`\>                                                                                                                                                             |
 
 ## Functions
 
 ### zodReq
 
-▸ **zodReq**<`TSchema`, `TReq`\>(`req`, `schema`): [`ZodRequest`](classes/ZodRequest.md)<`TSchema`, `TReq`\>
+▸ **zodReq**<`R`, `S`\>(`req`, `schema`): { [k\_1 in "method" \| "query" \| "cookies" \| "headers"]: addQuestionMarks<Object\>[k\_1] }
 
 #### Type parameters
 
-| Name      | Type                                                                                        |
-| :-------- | :------------------------------------------------------------------------------------------ |
-| `TSchema` | extends [`NextApiRequestSchema`](README.md#nextapirequestschema)                            |
-| `TReq`    | extends `Partial`<[`ParsableApiRequest`](README.md#parsableapirequest)\> = `NextApiRequest` |
+| Name | Type                                                         |
+| :--- | :----------------------------------------------------------- |
+| `R`  | extends [`ParsableApiRequest`](README.md#parsableapirequest) |
+| `S`  | extends `Partial`<`RequestSchemaWithoutMethod`\>             |
 
 #### Parameters
 
-| Name     | Type      |
-| :------- | :-------- |
-| `req`    | `TReq`    |
-| `schema` | `TSchema` |
+| Name     | Type |
+| :------- | :--- |
+| `req`    | `R`  |
+| `schema` | `S`  |
 
 #### Returns
 
-[`ZodRequest`](classes/ZodRequest.md)<`TSchema`, `TReq`\>
+{ [k\_1 in "method" \| "query" \| "cookies" \| "headers"]: addQuestionMarks<Object\>[k\_1] }

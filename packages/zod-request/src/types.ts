@@ -1,7 +1,7 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { NextApiRequest } from 'next';
 import type { ZodType } from 'zod';
-import type { httpMethods } from './httpMethods';
+import type { httpMethods } from './constants/httpMethods';
 
 export type HttpMethod = typeof httpMethods[number];
 export type HttpMethods = typeof httpMethods;

@@ -8,5 +8,5 @@
   "entryDocument": "README.md",
   "githubPages": false,
   "readme": "none",
-  "exclude": ["**/*.test.ts"]
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }

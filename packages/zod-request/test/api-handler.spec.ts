@@ -10,8 +10,6 @@ import { giveMeANextJsRequest } from './_helpers';
 
 describe('Api handler tests', () => {
   describe('when empty schema', () => {
-    const stringToNumber = z.string().transform((val) => val.length);
-
     it('should validate based on default GET method', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
@@ -115,28 +113,6 @@ describe('Api handler tests', () => {
 
   describe('When using advanced types', () => {
     it('should work with preprocess and ZodEffects', () => {
-      const stringToNumber = (arg: unknown): number => {
-        if (typeof arg === 'string') {
-          const number = Number(arg);
-          if (!isNaN(number)) {
-            return number;
-          }
-        }
-        throw new Error('pas cool');
-      };
-
-      const stringToNumberSchema = (def: number) =>
-        z.string().default(`${def}`).transform(Number);
-      const safePreprocessor =
-        <O, Z extends z.ZodType<O>>(preprocessorSchema: Z) =>
-        (val: unknown): O | null => {
-          const parsed = preprocessorSchema.safeParse(val);
-          if (!parsed.success) {
-            return null;
-          }
-          return parsed.data;
-        };
-
       const req = giveMeANextJsRequest({
         query: {
           regexp: 'belgattitude',
@@ -144,19 +120,6 @@ describe('Api handler tests', () => {
         },
       });
 
-      function integerString<
-        TSchema extends ZodNumber | z.ZodOptional<ZodNumber>
-      >(schema: TSchema) {
-        return z.preprocess(
-          (value) =>
-            typeof value === 'string'
-              ? parseInt(value, 10)
-              : typeof value === 'number'
-              ? value
-              : undefined,
-          schema
-        );
-      }
       const schema = {
         query: {
           regexp: z.string().regex(/belg/i),

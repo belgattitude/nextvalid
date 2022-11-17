@@ -1,13 +1,12 @@
 [@happy-next/zod-request](../README.md) / ZodRequest
 
-# Class: ZodRequest<TSchema, TReq\>
+# Class: ZodRequest<T\>
 
 ## Type parameters
 
-| Name      | Type                                                                                           |
-| :-------- | :--------------------------------------------------------------------------------------------- |
-| `TSchema` | extends [`NextApiRequestSchema`](../README.md#nextapirequestschema)                            |
-| `TReq`    | extends `Partial`<[`ParsableApiRequest`](../README.md#parsableapirequest)\> = `NextApiRequest` |
+| Name | Type                                                  |
+| :--- | :---------------------------------------------------- |
+| `T`  | extends [`RequestSchema`](../README.md#requestschema) |
 
 ## Table of contents
 
@@ -23,34 +22,33 @@
 
 ### constructor
 
-• **new ZodRequest**<`TSchema`, `TReq`\>(`req`, `schema`)
+• **new ZodRequest**<`T`\>(`schema`, `errorHandler?`)
 
 #### Type parameters
 
-| Name      | Type                                                                                           |
-| :-------- | :--------------------------------------------------------------------------------------------- |
-| `TSchema` | extends [`NextApiRequestSchema`](../README.md#nextapirequestschema)                            |
-| `TReq`    | extends `Partial`<[`ParsableApiRequest`](../README.md#parsableapirequest)\> = `NextApiRequest` |
+| Name | Type                                                  |
+| :--- | :---------------------------------------------------- |
+| `T`  | extends [`RequestSchema`](../README.md#requestschema) |
 
 #### Parameters
 
-| Name     | Type      |
-| :------- | :-------- |
-| `req`    | `TReq`    |
-| `schema` | `TSchema` |
+| Name            | Type            |
+| :-------------- | :-------------- |
+| `schema`        | `T`             |
+| `errorHandler?` | `IErrorHandler` |
 
 ## Methods
 
 ### parse
 
-▸ **parse**(`params?`): { [k in "query" \| "cookies" \| "headers" \| "method"]: addQuestionMarks<Object\>[k] }
+▸ **parse**(`req`): { [k\_1 in "method" \| "query" \| "cookies" \| "headers"]: addQuestionMarks<Object\>[k\_1] }
 
 #### Parameters
 
-| Name      | Type                 |
-| :-------- | :------------------- |
-| `params?` | `Params`<`TSchema`\> |
+| Name  | Type                                                    |
+| :---- | :------------------------------------------------------ |
+| `req` | [`ParsableApiRequest`](../README.md#parsableapirequest) |
 
 #### Returns
 
-{ [k in "query" \| "cookies" \| "headers" \| "method"]: addQuestionMarks<Object\>[k] }
+{ [k\_1 in "method" \| "query" \| "cookies" \| "headers"]: addQuestionMarks<Object\>[k\_1] }
