@@ -9,7 +9,7 @@ const schemaDefaults = {
   headers: {},
   query: {},
   cookies: {},
-};
+} as const;
 
 export class ZodRequest<T extends ApiRequestSchema> {
   constructor(private schema: T, private errorHandler?: IErrorHandler) {}
@@ -26,13 +26,13 @@ export class ZodRequest<T extends ApiRequestSchema> {
     }
     throw result.error;
   };
-  static withSchemaDefaults = <T extends ApiRequestSchema>(
-    schema: Partial<ApiRequestSchema>,
-    defaults?: Partial<T>
+  static withSchemaDefaults = <S extends Partial<ApiRequestSchema>>(
+    schema: S,
+    defaults?: ApiRequestSchema
   ) => {
     return new ZodRequest({
       ...(defaults ?? schemaDefaults),
       ...schema,
-    } as T);
+    });
   };
 }

@@ -1,4 +1,4 @@
-import { expectTypeOf } from 'vitest';
+import { assertType, expectTypeOf } from 'vitest';
 import { z } from 'zod';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
@@ -20,7 +20,7 @@ describe('zodReq type expectations', () => {
         },
       });
 
-      const validated = zodReq(req, {
+      const schema = {
         method: 'GET',
         query: {
           regexp: z.string().regex(/belg/i),
@@ -40,9 +40,16 @@ describe('zodReq type expectations', () => {
         cookies: {
           userLocale: z.string().optional(),
         },
-      });
+      };
 
-      // Types
+      const validated = zodReq(req, schema);
+      // Minimal typecheck
+      // cause when an error occurs, it's hard to read
+      // @link https://vitest.dev/guide/testing-types.html#reading-errors
+
+      expectTypeOf(validated.query.stringToInt).toEqualTypeOf<number>();
+
+      // Full schema typechecks
       expectTypeOf(validated).toMatchTypeOf<{
         method: string;
         query: {

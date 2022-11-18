@@ -1,6 +1,13 @@
 import type { ParsableApiRequest, ApiRequestSchema } from './types';
 import { ZodRequest } from './ZodRequest';
 
+const defaults = {
+  method: 'GET',
+  headers: {},
+  query: {},
+  cookies: {},
+};
+
 export const zodReq = <
   R extends ParsableApiRequest,
   S extends Partial<ApiRequestSchema>

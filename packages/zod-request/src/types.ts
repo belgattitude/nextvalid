@@ -29,7 +29,9 @@ export type IncomingHttpHeadersKeys =
  * Schema for validating api routes requests (a.k.a NextApiRequest)
  */
 export type ApiRequestSchema = {
-  method: HttpMethod | HttpMethod[];
+  // till typescript 4.9 `satisfies` is widely used, keep the union with string
+  // that avoids using `as const` when extracting a schema
+  method: HttpMethod | HttpMethod[] | string;
   query: Record<string, ZodType>;
   headers: Record<IncomingHttpHeadersKeys | string, ZodType>;
   cookies: Record<string, ZodType>;
