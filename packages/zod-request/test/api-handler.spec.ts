@@ -139,7 +139,7 @@ describe('Api handler tests', () => {
         },
       } as const;
 
-      const { query } = zodReq(req, schema as unknown as RequestSchema);
+      const { query } = zodReq(req, schema);
       expect(query.stringToInt).toStrictEqual(100);
       expect(typeof query.stringToInt).toStrictEqual('number');
       expect(query.regexp).toStrictEqual(req.query.regexp);
