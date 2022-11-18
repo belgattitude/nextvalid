@@ -4,7 +4,6 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { z } from 'zod';
 
 const schema = zodReq({
-  method: 'GET',
   query: {
     name: z.string().min(3).max(80).optional(),
     email: z.string().email('Invalid email').optional(),
@@ -12,18 +11,17 @@ const schema = zodReq({
   headers: {
     host: z.string().optional(),
   },
-  cookies: {},
 });
 
 type Props = {
-  queryParams: InferZodRequest<typeof schema>['query'];
+  query: InferZodRequest<typeof schema>['query'];
   headers: InferZodRequest<typeof schema>['headers'];
 };
 
 export default function ssrRoute(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
-  const { name, email } = props.queryParams;
+  const { name, email } = props.query;
   const { host } = props.headers;
   return (
     <div>
@@ -33,7 +31,7 @@ export default function ssrRoute(
         <li>{email ? `Your email is ${email}` : `No email provided`}</li>
         <li>{host ? `From ${host}` : `No host header`}</li>
       </ul>
-      <pre>{JSON.stringify(props.queryParams, null, 2)}</pre>
+      <pre>{JSON.stringify(props, null, 2)}</pre>
     </div>
   );
 }
@@ -41,7 +39,7 @@ export default function ssrRoute(
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
-  const params = schema.parse({
+  const { query, headers } = schema.parse({
     method: context.req.method,
     query: context.query,
     cookies: context.req.cookies,
@@ -49,8 +47,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   });
   return {
     props: {
-      queryParams: params.query,
-      headers: params.headers,
+      query,
+      headers,
     },
   };
 };
