@@ -1,4 +1,7 @@
 import type { z } from 'zod';
 export interface IErrorHandler {
-  process: (error: z.ZodError) => void;
+  /**
+   * @throws Error
+   */
+  process: (error: z.ZodError) => never;
 }

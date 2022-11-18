@@ -1,6 +1,6 @@
-import type { ParsableRequest } from '../../src/types';
+import type { ParsableRequest } from '../../src';
 
-export const giveMeANextJsRequest = (
+export const createNextRequest = (
   req: Partial<ParsableRequest>
 ): ParsableRequest => {
   return {

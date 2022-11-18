@@ -1,12 +1,12 @@
 import { assertType, expectTypeOf } from 'vitest';
 import { z } from 'zod';
 import { zodReq } from '../src';
-import { giveMeANextJsRequest } from './_helpers';
+import { createNextRequest } from './_helpers';
 
 describe('zodReq type expectations', () => {
   describe('zodRequest', () => {
     it('should pass types and runtime checks', () => {
-      const req = giveMeANextJsRequest({
+      const req = createNextRequest({
         query: {
           regexp: 'belgattitude',
           stringToInt: '100',

@@ -6,7 +6,11 @@ import type { z } from 'zod';
 import type { IErrorHandler } from './IErrorHandler';
 
 export class HttpExceptionHandler implements IErrorHandler {
-  process = (error: z.ZodError) => {
+  /**
+   * @throws HttpException
+   * @param error
+   */
+  process = (error: z.ZodError): never => {
     const methodError =
       error.issues.filter((issue) => issue.path?.[0] === 'method')?.[0] ?? null;
     if (methodError) {
@@ -21,5 +25,9 @@ export class HttpExceptionHandler implements IErrorHandler {
         cause: error,
       });
     }
+    throw new HttpBadRequest({
+      message: `Unable to validate parameters`,
+      cause: error,
+    });
   };
 }

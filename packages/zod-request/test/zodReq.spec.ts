@@ -4,19 +4,19 @@ import {
 } from '@belgattitude/http-exception';
 import { z } from 'zod';
 import { zodReq } from '../src';
-import { giveMeANextJsRequest } from './_helpers';
+import { createNextRequest } from './_helpers';
 
 describe('zodReq tests', () => {
-  describe('when empty schema si given', () => {
+  describe('when empty schema is given', () => {
     it('should default to GET method', () => {
-      const req = giveMeANextJsRequest({
+      const req = createNextRequest({
         method: 'GET',
       });
       const { method } = zodReq({}).parse(req);
       expect(method).toStrictEqual('GET');
     });
     it('should throw HttpMethodNotAllowed is not default GET', () => {
-      const req = giveMeANextJsRequest({
+      const req = createNextRequest({
         method: 'POST',
       });
       expect(() => zodReq({}).parse(req)).toThrow(HttpMethodNotAllowed);
@@ -25,7 +25,7 @@ describe('zodReq tests', () => {
 
   describe('when request payload is valid', () => {
     it('should parse without error and return data', () => {
-      const req = giveMeANextJsRequest({
+      const req = createNextRequest({
         method: 'GET',
         query: {
           name: 'belgattitude',
@@ -61,7 +61,7 @@ describe('zodReq tests', () => {
         zodReq({
           method: ['GET', 'POST'],
         }).parse(
-          giveMeANextJsRequest({
+          createNextRequest({
             method: 'PATCH',
           })
         );
@@ -75,7 +75,7 @@ describe('zodReq tests', () => {
         zodReq({
           method: 'GET',
         }).parse(
-          giveMeANextJsRequest({
+          createNextRequest({
             method: 'POST',
           })
         )
@@ -85,7 +85,7 @@ describe('zodReq tests', () => {
 
   describe('when query params are invalid', () => {
     it('should throw HttpBadRequest', () => {
-      const req = giveMeANextJsRequest({
+      const req = createNextRequest({
         method: 'GET',
         query: {
           email: 'invalid-email.com',

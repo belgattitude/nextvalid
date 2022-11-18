@@ -1,26 +1,32 @@
 import type { z } from 'zod';
 import type { IErrorHandler } from './error';
 import { HttpExceptionHandler } from './error';
-import type { ParsableRequest, RequestSchema } from './types';
-import { mapRequestSchemaToZod } from './utils';
+import type {
+  ParsableGsspContext,
+  ParsableRequest,
+  ServerSidePropsSchema,
+} from './types';
+import { mapServerSidePropsSchemaToZod } from './utils';
 
 const schemaDefaults = {
-  method: 'GET',
-  headers: {},
+  req: {
+    cookies: {},
+    headers: {},
+    method: {},
+  },
   query: {},
-  cookies: {},
 } as const;
 
-export class ZodGetServerSideProps<T extends RequestSchema> {
+export class ZodServerSideProps<T extends ServerSidePropsSchema> {
   constructor(
     public readonly schema: T,
     private errorHandler?: IErrorHandler
   ) {}
   parse = (
-    req: ParsableRequest
-  ): z.infer<ReturnType<typeof mapRequestSchemaToZod<T>>> => {
-    const all = mapRequestSchemaToZod<T>(this.schema);
-    const result = all.safeParse(req);
+    context: ParsableGsspContext
+  ): z.infer<ReturnType<typeof mapServerSidePropsSchemaToZod<T>>> => {
+    const all = mapServerSidePropsSchemaToZod<T>(this.schema);
+    const result = all.safeParse(context);
     if (result.success) {
       return result.data;
     }
@@ -29,13 +35,13 @@ export class ZodGetServerSideProps<T extends RequestSchema> {
     }
     throw result.error;
   };
-  static create = <S extends Partial<RequestSchema>>(params: {
+  static create = <S extends Partial<ServerSidePropsSchema>>(params: {
     schema: S;
     errorHandler?: IErrorHandler;
-    defaults?: RequestSchema;
+    defaults?: ServerSidePropsSchema;
   }) => {
     const { schema, errorHandler, defaults } = params;
-    return new ZodGetServerSideProps(
+    return new ZodServerSideProps(
       {
         ...(defaults ?? schemaDefaults),
         ...schema,

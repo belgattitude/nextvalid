@@ -1,1 +1,2 @@
-export { giveMeANextJsRequest } from './giveMeANextJsRequest';
+export { createNextRequest } from './createNextRequest';
+export { createGsspContext } from './createGsspContext';

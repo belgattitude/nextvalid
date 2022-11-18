@@ -1,5 +1,5 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
-import type { NextApiRequest } from 'next';
+import type { GetServerSidePropsContext, NextApiRequest } from 'next';
 import type { ZodType, z } from 'zod';
 import type { httpMethods } from './constants';
 import type { mapRequestSchemaToZod } from './utils';
@@ -31,8 +31,6 @@ export type IncomingHttpHeadersKeys =
  * Schema for validating api routes requests (a.k.a NextApiRequest)
  */
 export type RequestSchema = {
-  // till typescript 4.9 `satisfies` is widely used, keep the union with string
-  // that avoids using `as const` when extracting a schema
   method: HttpMethod | HttpMethod[] | string;
   query: Record<string, ZodType>;
   headers: Record<IncomingHttpHeadersKeys | string, ZodType>;
@@ -81,3 +79,20 @@ export type InferZodRequest<
     }>
   >
 >;
+
+/**
+ * Schema for validating GetServerSidePropsContext
+ */
+export type ServerSidePropsSchema = {
+  req: Pick<RequestSchema, 'method' | 'headers' | 'cookies'>;
+  query: Record<string, ZodType>;
+  // locale: string;
+};
+
+export type ParsableGsspContext = {
+  query: GetServerSidePropsContext['query'];
+  req: Pick<GetServerSidePropsContext['req'], 'cookies' | 'headers'> & {
+    method?: HttpMethod | string | undefined;
+  };
+  locale: GetServerSidePropsContext['locale'];
+};
