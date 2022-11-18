@@ -17,7 +17,7 @@ const schema = zodReq({
 });
 
 // Try it out http://localhost:3000/api/basic/Guillermo?email=me@example.com
-const basicHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const getHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { query, headers, method } = schema.parse(req);
 
   const { name, email } = query;
@@ -31,4 +31,4 @@ const basicHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default withApiErrorHandler({
   logger: new ConsoleLogger(),
-})(basicHandler);
+})(getHandler);
