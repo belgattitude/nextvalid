@@ -30,7 +30,7 @@ export type IncomingHttpHeadersKeys =
 /**
  * Schema for validating api routes requests (a.k.a NextApiRequest)
  */
-export type ApiRequestSchema = {
+export type RequestSchema = {
   // till typescript 4.9 `satisfies` is widely used, keep the union with string
   // that avoids using `as const` when extracting a schema
   method: HttpMethod | HttpMethod[] | string;
@@ -39,16 +39,16 @@ export type ApiRequestSchema = {
   cookies: Record<string, ZodType>;
 };
 
-export type ParsableApiRequest = Pick<
+export type ParsableRequest = Pick<
   NextApiRequest,
   'query' | 'cookies' | 'headers'
 > &
   Pick<IncomingMessage, 'url'> & { method?: HttpMethod | string | undefined };
 
-export type InferReqSchema<T extends Partial<ApiRequestSchema>> = z.infer<
+export type InferReqSchema<T extends Partial<RequestSchema>> = z.infer<
   ReturnType<
     typeof mapRequestSchemaToZod<{
-      method: ApiRequestSchema['method'];
+      method: RequestSchema['method'];
       query: T['query'] extends undefined
         ? Record<string, never>
         : NonNullable<T['query']>;
@@ -63,12 +63,12 @@ export type InferReqSchema<T extends Partial<ApiRequestSchema>> = z.infer<
 >;
 
 export type InferZodRequest<
-  ZR extends ZodRequest<ApiRequestSchema>,
+  ZR extends ZodRequest<RequestSchema>,
   T = ZR['schema']
 > = z.infer<
   ReturnType<
     typeof mapRequestSchemaToZod<{
-      method: ApiRequestSchema['method'];
+      method: RequestSchema['method'];
       query: T['query'] extends undefined
         ? Record<string, never>
         : NonNullable<T['query']>;

@@ -1,9 +1,7 @@
 import { z } from 'zod';
-import type { ApiRequestSchema, TupleOfHttpMethods } from '../types';
+import type { RequestSchema, TupleOfHttpMethods } from '../types';
 
-export const mapRequestSchemaToZod = <T extends ApiRequestSchema>(
-  schema: T
-) => {
+export const mapRequestSchemaToZod = <T extends RequestSchema>(schema: T) => {
   const method = Array.isArray(schema.method)
     ? (schema.method as TupleOfHttpMethods)
     : ([schema.method] as TupleOfHttpMethods);

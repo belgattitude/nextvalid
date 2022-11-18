@@ -10,19 +10,23 @@ const schema = zodReq({
   },
   headers: {
     host: z.string().optional(),
+    authorization: z
+      .string()
+      .regex(/^bearer /i)
+      .optional(),
   },
 });
 
 type Props = {
-  query: InferZodRequest<typeof schema>['query'];
-  headers: InferZodRequest<typeof schema>['headers'];
+  data: InferZodRequest<typeof schema>;
+  // query: InferZodRequest<typeof schema>['query']
 };
 
 export default function ssrRoute(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
-  const { name, email } = props.query;
-  const { host } = props.headers;
+  const { name, email } = props.data.query;
+  const { host } = props.data.headers;
   return (
     <div>
       <h1>The data</h1>
@@ -39,7 +43,7 @@ export default function ssrRoute(
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
-  const { query, headers } = schema.parse({
+  const data = schema.parse({
     method: context.req.method,
     query: context.query,
     cookies: context.req.cookies,
@@ -47,8 +51,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   });
   return {
     props: {
-      query,
-      headers,
+      data,
     },
   };
 };

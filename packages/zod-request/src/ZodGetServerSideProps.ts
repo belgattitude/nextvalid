@@ -11,7 +11,7 @@ const schemaDefaults = {
   cookies: {},
 } as const;
 
-export class ZodRequest<T extends RequestSchema> {
+export class ZodGetServerSideProps<T extends RequestSchema> {
   constructor(
     public readonly schema: T,
     private errorHandler?: IErrorHandler
@@ -35,7 +35,7 @@ export class ZodRequest<T extends RequestSchema> {
     defaults?: RequestSchema;
   }) => {
     const { schema, errorHandler, defaults } = params;
-    return new ZodRequest(
+    return new ZodGetServerSideProps(
       {
         ...(defaults ?? schemaDefaults),
         ...schema,

@@ -1,15 +1,15 @@
-import type { ParsableApiRequest } from '../../src/types';
+import type { ParsableRequest } from '../../src/types';
 
 export const giveMeANextJsRequest = (
-  req: Partial<ParsableApiRequest>
-): ParsableApiRequest => {
+  req: Partial<ParsableRequest>
+): ParsableRequest => {
   return {
     ...({
       method: 'GET',
       query: {},
       cookies: {},
       headers: {},
-    } as ParsableApiRequest),
+    } as ParsableRequest),
     ...req,
   };
 };

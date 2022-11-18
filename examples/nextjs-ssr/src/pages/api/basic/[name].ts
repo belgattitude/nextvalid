@@ -13,6 +13,10 @@ const schema = zodReq({
   },
   headers: {
     host: z.string().optional(),
+    authorization: z
+      .string()
+      .regex(/^bearer /i)
+      .optional(),
   },
 });
 
