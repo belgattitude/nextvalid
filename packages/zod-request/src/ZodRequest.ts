@@ -12,7 +12,10 @@ const schemaDefaults = {
 } as const;
 
 export class ZodRequest<T extends ApiRequestSchema> {
-  constructor(private schema: T, private errorHandler?: IErrorHandler) {}
+  constructor(
+    public readonly schema: T,
+    private errorHandler?: IErrorHandler
+  ) {}
   parse = (
     req: ParsableApiRequest
   ): z.infer<ReturnType<typeof mapRequestSchemaToZod<T>>> => {
@@ -26,13 +29,18 @@ export class ZodRequest<T extends ApiRequestSchema> {
     }
     throw result.error;
   };
-  static withSchemaDefaults = <S extends Partial<ApiRequestSchema>>(
-    schema: S,
-    defaults?: ApiRequestSchema
-  ) => {
-    return new ZodRequest({
-      ...(defaults ?? schemaDefaults),
-      ...schema,
-    });
+  static create = <S extends Partial<ApiRequestSchema>>(params: {
+    schema: S;
+    errorHandler?: IErrorHandler;
+    defaults?: ApiRequestSchema;
+  }) => {
+    const { schema, errorHandler, defaults } = params;
+    return new ZodRequest(
+      {
+        ...(defaults ?? schemaDefaults),
+        ...schema,
+      },
+      errorHandler
+    );
   };
 }

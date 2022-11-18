@@ -42,7 +42,7 @@ describe('zodReq type expectations', () => {
         },
       };
 
-      const validated = zodReq(req, schema);
+      const validated = zodReq(schema).parse(req);
       // Minimal typecheck
       // cause when an error occurs, it's hard to read
       // @link https://vitest.dev/guide/testing-types.html#reading-errors

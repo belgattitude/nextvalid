@@ -1,21 +1,15 @@
+import type { IErrorHandler } from './error';
 import type { ParsableApiRequest, ApiRequestSchema } from './types';
 import { ZodRequest } from './ZodRequest';
-
-const defaults = {
-  method: 'GET',
-  headers: {},
-  query: {},
-  cookies: {},
-};
 
 export const zodReq = <
   R extends ParsableApiRequest,
   S extends Partial<ApiRequestSchema>
 >(
-  req: R,
-  schema: S
+  schema: S,
+  errorHandler?: IErrorHandler
 ) => {
-  return ZodRequest.withSchemaDefaults(schema).parse(hackForNextJsReq(req));
+  return ZodRequest.create({ schema, errorHandler });
 };
 
 // Haven't had the time investigate this. If we send the req directly nextjs

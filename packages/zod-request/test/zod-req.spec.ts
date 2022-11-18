@@ -2,9 +2,7 @@ import {
   HttpBadRequest,
   HttpMethodNotAllowed,
 } from '@belgattitude/http-exception';
-import type { ZodNumber } from 'zod';
 import { z } from 'zod';
-import type { ApiRequestSchema } from '../src';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
@@ -14,14 +12,14 @@ describe('zodReq tests', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
       });
-      const { method } = zodReq(req, {});
+      const { method } = zodReq({}).parse(req);
       expect(method).toStrictEqual('GET');
     });
     it('should throw HttpMethodNotAllowed is not default GET', () => {
       const req = giveMeANextJsRequest({
         method: 'POST',
       });
-      expect(() => zodReq(req, {})).toThrow(HttpMethodNotAllowed);
+      expect(() => zodReq({}).parse(req)).toThrow(HttpMethodNotAllowed);
     });
   });
 
@@ -48,7 +46,7 @@ describe('zodReq tests', () => {
         },
       } as const;
 
-      const { query, headers, cookies, method } = zodReq(req, schema);
+      const { query, headers, cookies, method } = zodReq(schema).parse(req);
       expect(method).toStrictEqual(req.method);
       expect(query).toStrictEqual(req.query);
       expect(typeof query.email).toStrictEqual('string');
@@ -60,13 +58,12 @@ describe('zodReq tests', () => {
   describe('when method is not within allowed ones', () => {
     it('should throw HttpMethodNotAllowed', () => {
       expect(() => {
-        zodReq(
+        zodReq({
+          method: ['GET', 'POST'],
+        }).parse(
           giveMeANextJsRequest({
             method: 'PATCH',
-          }),
-          {
-            method: ['GET', 'POST'],
-          }
+          })
         );
       }).toThrow(HttpMethodNotAllowed);
     });
@@ -75,13 +72,12 @@ describe('zodReq tests', () => {
   describe('when method is invalid', () => {
     it('should throw HttpMethodNotAllowed', () => {
       expect(() =>
-        zodReq(
+        zodReq({
+          method: 'GET',
+        }).parse(
           giveMeANextJsRequest({
             method: 'POST',
-          }),
-          {
-            method: 'GET',
-          }
+          })
         )
       ).toThrow(HttpMethodNotAllowed);
     });
@@ -96,12 +92,12 @@ describe('zodReq tests', () => {
         },
       });
       expect(() =>
-        zodReq(req, {
+        zodReq({
           method: 'GET',
           query: {
             email: z.string().email('Invalid email'),
           },
-        })
+        }).parse(req)
       ).toThrow(HttpBadRequest);
     });
   });

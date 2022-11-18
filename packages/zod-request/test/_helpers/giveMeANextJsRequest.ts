@@ -1,4 +1,4 @@
-import type { ParsableApiRequest } from '../../src';
+import type { ParsableApiRequest } from '../../src/types';
 
 export const giveMeANextJsRequest = (
   req: Partial<ParsableApiRequest>
