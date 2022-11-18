@@ -1,7 +1,7 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { NextApiRequest } from 'next';
 import type { ZodType } from 'zod';
-import type { httpMethods } from './constants/httpMethods';
+import type { httpMethods } from './constants';
 
 export type HttpMethod = typeof httpMethods[number];
 export type HttpMethods = typeof httpMethods;
@@ -9,7 +9,7 @@ export type HttpMethods = typeof httpMethods;
 export type TupleOfHttpMethods = [HttpMethod, ...HttpMethod[]];
 
 /**
- * Well-know headers that aren't specifically covered by @types/node IncomingHttpHeaders
+ * Well-known headers that aren't specifically covered by @types/node IncomingHttpHeaders
  */
 interface AdditionalRequestHeaders {
   /**
@@ -25,13 +25,11 @@ export type IncomingHttpHeadersKeys =
   | keyof AdditionalRequestHeaders
   | keyof IncomingHttpHeaders;
 
-export type RequestSchema = {
-  // Till typescript 4.9 satisfies support
-  method:
-    | Readonly<HttpMethod>
-    | HttpMethod
-    | Readonly<HttpMethod[]>
-    | HttpMethod[];
+/**
+ * Schema for validating api routes requests (a.k.a NextApiRequest)
+ */
+export type ApiRequestSchema = {
+  method: HttpMethod | HttpMethod[];
   query: Record<string, ZodType>;
   headers: Record<IncomingHttpHeadersKeys | string, ZodType>;
   cookies: Record<string, ZodType>;

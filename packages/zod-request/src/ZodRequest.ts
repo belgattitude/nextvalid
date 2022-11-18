@@ -1,10 +1,17 @@
 import type { z } from 'zod';
 import type { IErrorHandler } from './error';
 import { HttpExceptionHandler } from './error';
-import type { ParsableApiRequest, RequestSchema } from './types';
+import type { ParsableApiRequest, ApiRequestSchema } from './types';
 import { mapRequestSchemaToZod } from './utils';
 
-export class ZodRequest<T extends RequestSchema> {
+const schemaDefaults = {
+  method: 'GET',
+  headers: {},
+  query: {},
+  cookies: {},
+};
+
+export class ZodRequest<T extends ApiRequestSchema> {
   constructor(private schema: T, private errorHandler?: IErrorHandler) {}
   parse = (
     req: ParsableApiRequest
@@ -18,5 +25,14 @@ export class ZodRequest<T extends RequestSchema> {
       new HttpExceptionHandler().process(result.error);
     }
     throw result.error;
+  };
+  static withSchemaDefaults = <T extends ApiRequestSchema>(
+    schema: Partial<ApiRequestSchema>,
+    defaults?: Partial<T>
+  ) => {
+    return new ZodRequest({
+      ...(defaults ?? schemaDefaults),
+      ...schema,
+    } as T);
   };
 }

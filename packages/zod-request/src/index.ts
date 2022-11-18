@@ -2,7 +2,7 @@ export { ZodRequest } from './ZodRequest';
 export { zodReq } from './zodReq';
 export type {
   ParsableApiRequest,
-  RequestSchema,
+  ApiRequestSchema,
   HttpMethods,
   HttpMethod,
   IncomingHttpHeadersKeys,

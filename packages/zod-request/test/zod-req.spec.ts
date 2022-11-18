@@ -4,7 +4,7 @@ import {
 } from '@belgattitude/http-exception';
 import type { ZodNumber } from 'zod';
 import { z } from 'zod';
-import type { RequestSchema } from '../src';
+import type { ApiRequestSchema } from '../src';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
