@@ -1,7 +1,9 @@
 // @ts-check
+import { createRequire } from 'node:module';
 import { getTsconfig } from 'get-tsconfig';
 import { pathsToModuleNameMapper } from 'ts-jest';
-import { getJestCachePath } from '../../cache.config.mjs';
+const require = createRequire(import.meta.url);
+const { getJestCachePath } = require('../../cache.config');
 
 const tsConfigFile = new URL('./tsconfig.json', import.meta.url).pathname;
 
