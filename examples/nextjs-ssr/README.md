@@ -2,7 +2,7 @@
 
 ```bash
 yarn install
-cd ./examples/nextjs-simple
+cd ./examples/nextjs-ssr
 yarn dev
 ```
 
