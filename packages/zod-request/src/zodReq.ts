@@ -6,22 +6,22 @@ type RequestSchemaWithoutMethod = Omit<RequestSchema, 'method'> & {
   method?: RequestSchema['method'] | undefined;
 };
 
+const defaults = {
+  method: 'GET',
+  headers: {},
+  query: {},
+  cookies: {},
+};
+
 export const zodReq = <
   R extends ParsableApiRequest,
-  S extends Partial<RequestSchemaWithoutMethod>
+  S extends Partial<RequestSchema>
 >(
   req: R,
   schema: S
 ) => {
-  const defaultMethod = 'GET';
-
   return new ZodRequest({
-    ...{
-      method: z.enum([defaultMethod]),
-      headers: {},
-      query: {},
-      cookies: {},
-    },
+    ...defaults,
     ...schema,
   }).parse(hackForNextJsReq(req));
 };
@@ -30,7 +30,7 @@ export const zodReq = <
 // goes BOOM with a 500.
 const hackForNextJsReq = (req: ParsableApiRequest): ParsableApiRequest => {
   return {
-    method: req.method,
+    method: req.method ?? 'GET',
     headers: req.headers,
     query: req.query,
     cookies: req.cookies,

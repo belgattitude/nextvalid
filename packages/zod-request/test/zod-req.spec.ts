@@ -8,21 +8,16 @@ import type { RequestSchema } from '../src';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
-describe('Api handler tests', () => {
-  describe('when empty schema', () => {
-    it('should validate based on default GET method', () => {
+describe('zodReq tests', () => {
+  describe('when empty schema si given', () => {
+    it('should default to GET method', () => {
       const req = giveMeANextJsRequest({
         method: 'GET',
       });
-      const { method } = zodReq(req, {
-        // method: 'GET',
-        cookies: {},
-        query: {},
-        headers: {},
-      });
+      const { method } = zodReq(req, {});
       expect(method).toStrictEqual('GET');
     });
-    it('should throw HttpMethodNotAllowed is not GET', () => {
+    it('should throw HttpMethodNotAllowed is not default GET', () => {
       const req = giveMeANextJsRequest({
         method: 'POST',
       });
@@ -108,41 +103,6 @@ describe('Api handler tests', () => {
           },
         })
       ).toThrow(HttpBadRequest);
-    });
-  });
-
-  describe('When using advanced types', () => {
-    it('should work with preprocess and ZodEffects', () => {
-      const req = giveMeANextJsRequest({
-        query: {
-          regexp: 'belgattitude',
-          stringToInt: '100',
-        },
-      });
-
-      const schema = {
-        query: {
-          regexp: z.string().regex(/belg/i),
-          // stringToInt: z.preprocess(stringToNumber, z.number().int().min(100)),
-          // stringToInt: z.preprocess(
-          //  safePreprocessor(stringToNumberSchema(0)),
-          //  z.number().min(100)
-          // stringToInt: integerString(z.number().max(10).optional()),
-          stringToInt: z.preprocess((input) => {
-            const processed = z
-              .string()
-              .regex(/^\d+$/)
-              .transform(Number)
-              .safeParse(input);
-            return processed.success ? processed.data : input;
-          }, z.number().min(0)),
-        },
-      } as const;
-
-      const { query } = zodReq(req, schema);
-      expect(query.stringToInt).toStrictEqual(100);
-      expect(typeof query.stringToInt).toStrictEqual('number');
-      expect(query.regexp).toStrictEqual(req.query.regexp);
     });
   });
 });

@@ -6,8 +6,8 @@ export const mapRequestSchemaToZod = <T extends RequestSchema>(schema: T) => {
     ? (schema.method as TupleOfHttpMethods)
     : ([schema.method] as TupleOfHttpMethods);
   return z.object({
-    query: z.object<T['query']>(schema.query),
     method: z.enum(method),
+    query: z.object<T['query']>(schema.query),
     headers: z.object<T['headers']>(schema.headers),
     cookies: z.object<T['cookies']>(schema.cookies),
   });

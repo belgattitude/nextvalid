@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodReq } from '../src';
 import { giveMeANextJsRequest } from './_helpers';
 
-describe('Type expectations', () => {
+describe('zodReq type expectations', () => {
   describe('zodRequest', () => {
     it('should pass types and runtime checks', () => {
       const req = giveMeANextJsRequest({
