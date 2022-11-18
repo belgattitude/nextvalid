@@ -1,9 +1,9 @@
-import type { InferReqSchema } from '@happy-next/zod-request';
+import type { InferZodRequest } from '@happy-next/zod-request';
 import { zodReq } from '@happy-next/zod-request';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { z } from 'zod';
 
-const zr = zodReq({
+const schema = zodReq({
   method: 'GET',
   query: {
     name: z.string().min(3).max(80).optional(),
@@ -16,8 +16,8 @@ const zr = zodReq({
 });
 
 type Props = {
-  queryParams: InferReqSchema<typeof zr.schema>['query'];
-  headers: InferReqSchema<typeof zr.schema>['headers'];
+  queryParams: InferZodRequest<typeof schema>['query'];
+  headers: InferZodRequest<typeof schema>['headers'];
 };
 
 export default function ssrRoute(
@@ -41,7 +41,7 @@ export default function ssrRoute(
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
-  const params = zr.parse({
+  const params = schema.parse({
     method: context.req.method,
     query: context.query,
     cookies: context.req.cookies,

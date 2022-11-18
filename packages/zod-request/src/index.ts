@@ -1,6 +1,7 @@
 export type {
   ApiRequestSchema,
   InferReqSchema,
+  InferZodRequest,
   ParsableApiRequest,
 } from './types';
 export { ZodRequest } from './ZodRequest';
