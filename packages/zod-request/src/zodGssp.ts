@@ -1,13 +1,9 @@
 import type { IErrorHandler } from './error';
-import type {
-  ParsableRequest,
-  RequestSchema,
-  ServerSidePropsSchema,
-} from './types';
+import type { ParsableGsspContext, ServerSidePropsSchema } from './types';
 import { ZodServerSideProps } from './ZodServerSideProps';
 
 export const zodGssp = <
-  R extends ParsableRequest,
+  R extends ParsableGsspContext,
   S extends Partial<ServerSidePropsSchema>
 >(
   schema: S,

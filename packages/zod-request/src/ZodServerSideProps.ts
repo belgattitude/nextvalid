@@ -5,14 +5,12 @@ import type { ParsableGsspContext, ServerSidePropsSchema } from './types';
 import { mapServerSidePropsSchemaToZod } from './utils';
 
 const schemaDefaults = {
-  req: {
-    method: 'GET',
-    cookies: {},
-    headers: {},
-  },
+  method: 'GET',
+  cookies: {},
+  headers: {},
   query: {},
   locale: undefined,
-} as const;
+};
 
 export class ZodServerSideProps<T extends ServerSidePropsSchema> {
   constructor(
@@ -23,7 +21,12 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
     context: ParsableGsspContext
   ): z.infer<ReturnType<typeof mapServerSidePropsSchemaToZod<T>>> => {
     const all = mapServerSidePropsSchemaToZod<T>(this.schema);
-    const result = all.safeParse(context);
+    const result = all.safeParse({
+      method: context.req.method,
+      headers: context.req.headers,
+      cookies: context.req.cookies,
+      query: context.query,
+    });
     if (result.success) {
       return result.data;
     }
@@ -38,12 +41,11 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
     defaults?: ServerSidePropsSchema;
   }) => {
     const { schema, errorHandler, defaults } = params;
-    const { req = defaults?.req ?? schemaDefaults.req } = schema;
-    const { query = defaults?.query ?? schemaDefaults.query } = schema;
+
     return new ZodServerSideProps(
       {
-        req: { ...req, ...schema.req },
-        query,
+        ...(defaults ?? schemaDefaults),
+        ...schema,
       },
       errorHandler
     );

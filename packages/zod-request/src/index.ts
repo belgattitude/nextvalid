@@ -3,6 +3,8 @@ export type {
   ServerSidePropsSchema,
   InferReqSchema,
   InferZodRequest,
+  InferZodServerSideProps,
+  InferServerSidePropsSchema,
   ParsableRequest,
   ParsableGsspContext,
 } from './types';

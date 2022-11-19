@@ -1,9 +1,9 @@
-import type { InferZodRequest } from '@happy-next/zod-request';
-import { zodReq } from '@happy-next/zod-request';
+import type { InferZodServerSideProps } from '@happy-next/zod-request';
+import { zodGssp } from '@happy-next/zod-request';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { z } from 'zod';
 
-const schema = zodReq({
+const schema = zodGssp({
   query: {
     name: z.string().min(3).max(80).optional(),
     email: z.string().email('Invalid email').optional(),
@@ -18,7 +18,7 @@ const schema = zodReq({
 });
 
 type Props = {
-  data: InferZodRequest<typeof schema>;
+  data: InferZodServerSideProps<typeof schema>;
   // query: InferZodRequest<typeof schema>['query']
 };
 
@@ -44,12 +44,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
   const { locale } = context;
-  const data = schema.parse({
-    method: context.req.method,
-    query: context.query,
-    cookies: context.req.cookies,
-    headers: context.req.headers,
-  });
+  const data = schema.parse(context);
   return {
     props: {
       data,

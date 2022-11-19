@@ -1,21 +1,23 @@
 import { assertType, expectTypeOf } from 'vitest';
 import { z } from 'zod';
-import { zodReq } from '../src';
-import { createNextRequest } from './_helpers';
+import { zodGssp, zodReq } from '../src';
+import { createGsspContext, createNextRequest } from './_helpers';
 
-describe('zodReq type expectations', () => {
+describe('zodGssp type expectations', () => {
   it('should pass types and runtime checks', () => {
-    const req = createNextRequest({
+    const req = createGsspContext({
       query: {
         regexp: 'belgattitude',
         stringToInt: '100',
         partOfEnum: 'TO_BE',
       },
-      headers: {
-        host: 'https://something.be/fr',
-      },
-      cookies: {
-        userLocale: 'en',
+      req: {
+        headers: {
+          host: 'https://something.be/fr',
+        },
+        cookies: {
+          userLocale: 'en',
+        },
       },
     });
 
@@ -41,7 +43,7 @@ describe('zodReq type expectations', () => {
       },
     };
 
-    const validated = zodReq(schema).parse(req);
+    const validated = zodGssp(schema).parse(req);
     // Minimal typecheck
     // cause when an error occurs, it's hard to read
     // @link https://vitest.dev/guide/testing-types.html#reading-errors

@@ -2,8 +2,12 @@ import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { GetServerSidePropsContext, NextApiRequest } from 'next';
 import type { ZodType, z } from 'zod';
 import type { httpMethods } from './constants';
-import type { mapRequestSchemaToZod } from './utils';
+import type {
+  mapRequestSchemaToZod,
+  mapServerSidePropsSchemaToZod,
+} from './utils';
 import type { ZodRequest } from './ZodRequest';
+import type { ZodServerSideProps } from './ZodServerSideProps';
 
 export type HttpMethod = typeof httpMethods[number];
 export type HttpMethods = typeof httpMethods;
@@ -60,8 +64,47 @@ export type InferReqSchema<T extends Partial<RequestSchema>> = z.infer<
   >
 >;
 
+export type InferServerSidePropsSchema<
+  T extends Partial<ServerSidePropsSchema>
+> = z.infer<
+  ReturnType<
+    typeof mapServerSidePropsSchemaToZod<{
+      method: RequestSchema['method'];
+      query: T['query'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['query']>;
+      cookies: T['cookies'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['cookies']>;
+      headers: T['headers'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['headers']>;
+    }>
+  >
+>;
+
 export type InferZodRequest<
   ZR extends ZodRequest<RequestSchema>,
+  T = ZR['schema']
+> = z.infer<
+  ReturnType<
+    typeof mapRequestSchemaToZod<{
+      method: RequestSchema['method'];
+      query: T['query'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['query']>;
+      cookies: T['cookies'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['cookies']>;
+      headers: T['headers'] extends undefined
+        ? Record<string, never>
+        : NonNullable<T['headers']>;
+    }>
+  >
+>;
+
+export type InferZodServerSideProps<
+  ZR extends ZodServerSideProps<ServerSidePropsSchema>,
   T = ZR['schema']
 > = z.infer<
   ReturnType<
@@ -83,8 +126,10 @@ export type InferZodRequest<
 /**
  * Schema for validating GetServerSidePropsContext
  */
-export type ServerSidePropsSchema = {
-  req: Pick<RequestSchema, 'method' | 'headers' | 'cookies'>;
+export type ServerSidePropsSchema = Pick<
+  RequestSchema,
+  'method' | 'headers' | 'cookies'
+> & {
   query: Record<string, ZodType>;
   // locale: string;
 };
@@ -94,5 +139,5 @@ export type ParsableGsspContext = {
   req: Pick<GetServerSidePropsContext['req'], 'cookies' | 'headers'> & {
     method?: HttpMethod | string | undefined;
   };
-  locale: GetServerSidePropsContext['locale'];
+  locale?: GetServerSidePropsContext['locale'];
 };

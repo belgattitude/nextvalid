@@ -10,7 +10,7 @@ export const createGsspContext = (
   };
   const { req = defaultReq, query = {}, locale = undefined } = context;
   return {
-    req,
+    req: { ...defaultReq, ...req },
     query,
     locale,
   };
