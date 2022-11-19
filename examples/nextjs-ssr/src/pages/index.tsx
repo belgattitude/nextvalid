@@ -43,7 +43,6 @@ export default function ssrRoute(
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
-  const { locale } = context;
   const data = schema.parse(context);
   return {
     props: {
