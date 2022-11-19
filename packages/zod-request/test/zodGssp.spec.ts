@@ -18,26 +18,28 @@ describe('zodGssp tests', () => {
         },
       });
       const schema = {
-        method: 'GET',
         query: {
           orderBy: z.string(),
         },
-        headers: {
-          authorization: z.string().startsWith('Bearer'),
+        req: {
+          method: 'GET',
+          headers: {
+            authorization: z.string().startsWith('Bearer'),
+          },
+          cookies: {},
         },
       } as const;
 
       const {
         query,
-        req: { method, cookies },
+        req: { method, headers, cookies },
       } = zodGssp(schema).parse(context);
       expect(method).toStrictEqual(context.req.method);
       expect(query).toStrictEqual(context.query);
       expect(typeof query.orderBy).toStrictEqual('string');
-      /*
       expect(headers.authorization).toStrictEqual(
         context.req.headers.authorization
-      ); */
+      );
       expect(cookies).toStrictEqual({});
     });
   });

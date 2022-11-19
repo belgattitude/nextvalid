@@ -1,20 +1,17 @@
 import type { z } from 'zod';
 import type { IErrorHandler } from './error';
 import { HttpExceptionHandler } from './error';
-import type {
-  ParsableGsspContext,
-  ParsableRequest,
-  ServerSidePropsSchema,
-} from './types';
+import type { ParsableGsspContext, ServerSidePropsSchema } from './types';
 import { mapServerSidePropsSchemaToZod } from './utils';
 
 const schemaDefaults = {
   req: {
+    method: 'GET',
     cookies: {},
     headers: {},
-    method: {},
   },
   query: {},
+  locale: undefined,
 } as const;
 
 export class ZodServerSideProps<T extends ServerSidePropsSchema> {
@@ -41,10 +38,12 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
     defaults?: ServerSidePropsSchema;
   }) => {
     const { schema, errorHandler, defaults } = params;
+    const { req = defaults?.req ?? schemaDefaults.req } = schema;
+    const { query = defaults?.query ?? schemaDefaults.query } = schema;
     return new ZodServerSideProps(
       {
-        ...(defaults ?? schemaDefaults),
-        ...schema,
+        req: { ...req, ...schema.req },
+        query,
       },
       errorHandler
     );
