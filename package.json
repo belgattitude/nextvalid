@@ -19,7 +19,7 @@
   "scripts": {
     "g:clean": "yarn clean:global-cache && yarn workspaces foreach -pv run clean",
     "g:build": "yarn workspaces foreach -ptv run build",
-    "g:build-packages": "yarn workspaces foreach -ptv --include '@belgattitude/*' run build",
+    "g:build-packages": "yarn workspaces foreach -ptv --include '@nextvalid/*' run build",
     "g:build-examples": "yarn workspaces foreach -ptv --include '@examples/*' run build",
     "g:build-doc": "yarn workspaces foreach -ptv run build-doc",
     "g:test": "yarn workspaces foreach -pv run test",
@@ -31,7 +31,7 @@
     "g:changeset": "changeset",
     "g:check-dist": "yarn workspaces foreach -ptv run check-dist",
     "g:check-size": "yarn workspaces foreach -ptv run check-size",
-    "g:release": "yarn g:build && changeset publish",
+    "g:release": "yarn g:build-packages && changeset publish",
     "clean:lint": "rimraf --no-glob ./.cache/eslint",
     "clean:global-cache": "rimraf --no-glob ./.cache",
     "deps:check": "yarn dlx npm-check-updates@latest --configFileName ncurc.yml --deep",
