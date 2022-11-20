@@ -1,1 +1,1 @@
-# @next-helpers/zod-request
+# @nextvalid/zod-request
