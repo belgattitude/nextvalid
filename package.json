@@ -39,7 +39,8 @@
     "docs:serve": "docsify serve ./docs",
     "check:install": "yarn dlx @yarnpkg/doctor@3.1 .",
     "postinstall": "is-ci || yarn husky install",
-    "format": "prettier --config .prettierrc.js --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\""
+    "format": "prettier --config .prettierrc.js --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\"",
+    "nuke:node_modules": "rimraf '**/node_modules'"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.12.0",
