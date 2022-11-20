@@ -1,4 +1,4 @@
-# @next2cents/zod-request
+# @nextvalid/zod-request
 
 [![npm](https://img.shields.io/npm/v/@next-helpers/zod-request?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@next-helpers/zod-request)
 [![size](https://img.shields.io/bundlephobia/minzip/@next-helpers/zod-request@latest?label=MinGZIP&style=for-the-badge&labelColor=333&color=informational)](https://bundlephobia.com/package/@next-helpers/zod-request@latest)

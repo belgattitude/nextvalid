@@ -1,4 +1,4 @@
-import { zodReq } from '@happy-next/zod-request';
+import { zodReq } from '@nextvalid/zod-request';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';

@@ -1,11 +1,11 @@
 {
-  "name": "@happy-next/zod-request",
+  "name": "@nextvalid/zod-request",
   "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/belgattitude/happy-next",
+  "homepage": "https://github.com/belgattitude/nextvalid",
   "repository": {
     "type": "git",
-    "url": "https://github.com/belgattitude/happy-next",
+    "url": "https://github.com/belgattitude/nextvalid",
     "directory": "packages/zod-request"
   },
   "author": {
@@ -84,7 +84,7 @@
     }
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.11.0",
+    "@belgattitude/eslint-config-bases": "1.12.0",
     "@belgattitude/http-exception": "1.4.0",
     "@size-limit/file": "8.1.0",
     "@size-limit/webpack": "8.1.0",
@@ -112,7 +112,7 @@
     "typedoc-plugin-markdown": "3.13.6",
     "typescript": "4.9.3",
     "vite": "3.2.4",
-    "vite-tsconfig-paths": "3.5.2",
+    "vite-tsconfig-paths": "3.6.0",
     "vitest": "0.25.2",
     "webpack": "5.75.0"
   },

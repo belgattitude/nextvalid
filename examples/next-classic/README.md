@@ -1,8 +1,10 @@
-## @next-helpers playground
+## @nextvalid example app
+
+### Install
 
 ```bash
 yarn install
-cd ./examples/nextjs-ssr
+cd ./examples/next-classic
 yarn dev
 ```
 
