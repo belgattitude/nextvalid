@@ -41,23 +41,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: 📥 Monorepo install
-        uses: ./.github/actions/monorepo-install
+        uses: ./.github/actions/yarn-nm-install
 
-      - name: Build packages
-        run: |
-          yarn workspaces foreach -v --from '@next-helpers/*' run build
+      - name: Pre build packages
+        run: yarn workspaces foreach -v --exclude '@examples/*' --no-private run build
 
-      - name: Typecheck
-        run: |
-          yarn workspaces foreach -v --from '@examples/*' run typecheck
+      - name: Typecheck (path aliases)
+        run: yarn workspaces foreach -v --from '@examples/*' run typecheck
+
+      - name: Typecheck (no paths aliases)
+        run: yarn workspaces foreach -v --from '@examples/*' run typecheck-no-paths
 
       - name: Lint
-        run: |
-          yarn workspaces foreach -v --from '@examples/*' run lint
+        run: yarn workspaces foreach -v --from '@examples/*' run lint
 
       - name: Build example apps
-        run: |
-          yarn workspaces foreach -v --from '@examples/*' run build
+        run: yarn workspaces foreach -v --from '@examples/*' run build
         env:
           NEXTJS_IGNORE_ESLINT: true
           NEXTJS_IGNORE_TYPECHECK: true

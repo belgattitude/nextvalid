@@ -11,7 +11,7 @@ The base branch is **`main`**.
 ├── examples
 │   └── nextjs-app
 └── packages
-    └── http-exception
+    └── zod-request
 ```
 
 ## Workflow

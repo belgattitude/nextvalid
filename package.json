@@ -1,8 +1,8 @@
 {
-  "name": "next-helpers-monorepo",
+  "name": "nextvalid-monorepo",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.0.0-rc.22",
+  "packageManager": "yarn@4.0.0-rc.29",
   "homepage": "https://github.com/belgattitude/next-helpers",
   "repository": {
     "type": "git",
@@ -39,30 +39,31 @@
     "docs:serve": "docsify serve ./docs",
     "check:install": "yarn dlx @yarnpkg/doctor@3.1 .",
     "postinstall": "is-ci || yarn husky install",
-    "format": "prettier --config .prettierrc.js --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\""
+    "format": "prettier --config .prettierrc.js --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\"",
+    "nuke:node_modules": "rimraf '**/node_modules'"
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.10.0",
+    "@belgattitude/eslint-config-bases": "1.12.0",
     "@changesets/changelog-github": "0.4.7",
-    "@changesets/cli": "2.25.0",
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "17.1.0",
+    "@changesets/cli": "2.25.2",
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "@types/prettier": "2.7.1",
     "@types/shell-quote": "1.7.1",
     "cross-env": "7.0.3",
-    "docsify": "4.12.2",
+    "docsify": "4.13.0",
     "docsify-cli": "4.4.4",
-    "eslint": "8.24.0",
-    "husky": "8.0.1",
+    "eslint": "8.28.0",
+    "husky": "8.0.2",
     "is-ci": "3.0.1",
     "lint-staged": "13.0.3",
     "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
-    "shell-quote": "1.7.3",
-    "typescript": "4.8.4"
+    "shell-quote": "1.7.4",
+    "typescript": "4.9.3"
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16.14"
   }
 }

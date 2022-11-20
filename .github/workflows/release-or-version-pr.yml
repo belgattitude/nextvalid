@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     # Security: the release job can only be executed from this repo and from the main branch (not a remote thing)
-    if: ${{ github.repository == 'belgattitude/next-helpers' && contains('refs/heads/main',github.ref)}}
+    if: ${{ github.repository == 'belgattitude/valid' && contains('refs/heads/main',github.ref)}}
     name: Release and changelog
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +26,7 @@ jobs:
           node-version: 16.x
 
       - name: 📥 Monorepo install
-        uses: ./.github/actions/monorepo-install
+        uses: ./.github/actions/yarn-nm-install
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -41,5 +41,5 @@ jobs:
           # The regular GITHUB_TOKEN won't allow the created "Version Packages" pr to
           # trigger the regular CI workflow. This limitation can be circumvented by
           # setting a custom PAT token from a GH account and setting it the secrets.
-          GITHUB_TOKEN: ${{ secrets.BELGATTITUDE_NEXT_HELPERS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BELGATTITUDE_NEXT_VALID_TOKEN }}
 
