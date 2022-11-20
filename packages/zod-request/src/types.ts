@@ -131,7 +131,6 @@ export type ServerSidePropsSchema = Pick<
   'method' | 'headers' | 'cookies'
 > & {
   query: Record<string, ZodType>;
-  // locale: string;
 };
 
 export type ParsableGsspContext = {

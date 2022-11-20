@@ -30,6 +30,7 @@ describe('zodGssp tests', () => {
 
       const { query, method, headers, cookies } =
         zodGssp(schema).parse(context);
+
       expect(method).toStrictEqual(context.req.method);
       expect(query).toStrictEqual(context.query);
       expect(typeof query.orderBy).toStrictEqual('string');

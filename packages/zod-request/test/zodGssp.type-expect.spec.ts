@@ -1,6 +1,6 @@
 import { assertType, expectTypeOf } from 'vitest';
 import { z } from 'zod';
-import { zodGssp, zodReq } from '../src';
+import { zodGssp, zodReq, ZodServerSideProps } from '../src';
 import { createGsspContext, createNextRequest } from './_helpers';
 
 describe('zodGssp type expectations', () => {
@@ -44,10 +44,10 @@ describe('zodGssp type expectations', () => {
     };
 
     const validated = zodGssp(schema).parse(req);
+
     // Minimal typecheck
     // cause when an error occurs, it's hard to read
     // @link https://vitest.dev/guide/testing-types.html#reading-errors
-
     expectTypeOf(validated.query.stringToInt).toEqualTypeOf<number>();
 
     // Full schema typechecks

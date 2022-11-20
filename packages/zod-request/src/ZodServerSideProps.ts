@@ -6,11 +6,10 @@ import { mapServerSidePropsSchemaToZod } from './utils';
 
 const schemaDefaults = {
   method: 'GET',
-  cookies: {},
-  headers: {},
   query: {},
-  // locale: undefined,
-};
+  headers: {},
+  cookies: {},
+} as const;
 
 export class ZodServerSideProps<T extends ServerSidePropsSchema> {
   constructor(

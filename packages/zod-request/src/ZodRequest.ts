@@ -6,8 +6,8 @@ import { mapRequestSchemaToZod } from './utils';
 
 const schemaDefaults = {
   method: 'GET',
-  headers: {},
   query: {},
+  headers: {},
   cookies: {},
 } as const;
 

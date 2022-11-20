@@ -1,11 +1,8 @@
 import type { IErrorHandler } from './error';
-import type { ParsableRequest, RequestSchema } from './types';
+import type { RequestSchema } from './types';
 import { ZodRequest } from './ZodRequest';
 
-export const zodReq = <
-  R extends ParsableRequest,
-  S extends Partial<RequestSchema>
->(
+export const zodReq = <S extends Partial<RequestSchema>>(
   schema: S,
   errorHandler?: IErrorHandler
 ) => {
