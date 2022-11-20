@@ -2,7 +2,7 @@
   "name": "nextvalid-monorepo",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.0.0-rc.29",
+  "packageManager": "yarn@4.0.0-rc.30",
   "homepage": "https://github.com/belgattitude/next-helpers",
   "repository": {
     "type": "git",
