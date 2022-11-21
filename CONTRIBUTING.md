@@ -2,6 +2,21 @@
 
 The base branch is **`main`**.
 
+## Workflow
+
+> **Note**
+> Please feature/fix/update... into individual PRs (not one changing everything)
+
+- Create a [github fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+- On your fork, create a branch make the changes, commit and push.
+- Create a pull-request.
+
+## Checklist
+
+- [x] **tests** should be included part of your PR (`yarn g:test`)
+- [x] a **changeset** should be provided (`yarn g:changeset`) when applicable.
+- [x] **documentation** should be updated (`yarn g:build-doc` helps to api doc).
+
 ## Structure
 
 ```
@@ -12,17 +27,7 @@ The base branch is **`main`**.
     └── zod-request
 ```
 
-## Workflow
-
-- Makes changes, push and create a P/R on github.
-
-## Checklist
-
-- [x] **tests** should be included part of your PR (`yarn g:test`)
-- [x] a **changeset** should be provided (`yarn g:changeset`) when applicable.
-- [x] **documentation** should be updated (`yarn g:build-doc` helps to api doc).
-
-## Locally
+## Scripts
 
 | Name                         | Description                                                                                                                               |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
