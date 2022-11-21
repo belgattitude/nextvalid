@@ -1,7 +1,4 @@
-import {
-  HttpBadRequest,
-  HttpMethodNotAllowed,
-} from '@belgattitude/http-exception';
+import { HttpBadRequest, HttpMethodNotAllowed } from '@httpx/exception';
 import { z } from 'zod';
 import { zodReq } from '../src';
 import { createNextRequest } from './_helpers';

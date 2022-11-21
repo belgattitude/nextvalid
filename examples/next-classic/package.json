@@ -15,7 +15,7 @@
     "fix-staged": "lint-staged --allow-empty"
   },
   "dependencies": {
-    "@belgattitude/http-exception": "1.4.0",
+    "@httpx/exception": "1.6.0",
     "@nextvalid/zod-request": "workspace:^",
     "axios": "1.1.3",
     "ky": "0.32.2",

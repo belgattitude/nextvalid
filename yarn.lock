@@ -488,13 +488,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@belgattitude/http-exception@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@belgattitude/http-exception@npm:1.4.0"
-  checksum: ea3ffe486e6693e3bc35b2d20a17ededee26aa391ae38169cf83f29463aa30523a88e42009be6a515fb6462182d748b19c825f4b368f0bb433c2cf1483869d42
-  languageName: node
-  linkType: hard
-
 "@changesets/apply-release-plan@npm:^6.1.2":
   version: 6.1.2
   resolution: "@changesets/apply-release-plan@npm:6.1.2"
@@ -1026,7 +1019,7 @@ __metadata:
   resolution: "@examples/next-classic@workspace:examples/next-classic"
   dependencies:
     "@belgattitude/eslint-config-bases": "npm:1.12.0"
-    "@belgattitude/http-exception": "npm:1.4.0"
+    "@httpx/exception": "npm:1.6.0"
     "@nextvalid/zod-request": "workspace:^"
     "@types/node": "npm:18.11.9"
     "@types/react": "npm:18.0.25"
@@ -1277,6 +1270,13 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: d5e5fa47f07c6f84c8cca891e8e3a419f1f8dd9c4e0ee29814bfd6932b9950c25a4ff616366da28fc0e58d14ad951020d3f7c72224165f68c399951f96ca37e3
+  languageName: node
+  linkType: hard
+
+"@httpx/exception@npm:1.6.0, @httpx/exception@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@httpx/exception@npm:1.6.0"
+  checksum: 9e5c59107ad65b8559a9daccbbdcfa9265e60eec635ae348c1ad046761a82c0efe5fe1463cde5eea1c919544a47753cf0a7a14530d7409d9ba021a976179aec9
   languageName: node
   linkType: hard
 
@@ -1772,7 +1772,7 @@ __metadata:
   resolution: "@nextvalid/zod-request@workspace:packages/zod-request"
   dependencies:
     "@belgattitude/eslint-config-bases": "npm:1.12.0"
-    "@belgattitude/http-exception": "npm:1.4.0"
+    "@httpx/exception": "npm:^1.6.0"
     "@size-limit/file": "npm:8.1.0"
     "@size-limit/webpack": "npm:8.1.0"
     "@size-limit/webpack-why": "npm:8.1.0"
