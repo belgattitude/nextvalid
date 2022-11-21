@@ -59,7 +59,7 @@
     "fix-all-files": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix"
   },
   "dependencies": {
-    "@belgattitude/http-exception": "^1.4.0",
+    "@httpx/exception": "^1.6.0",
     "zod": "^3.19.1"
   },
   "peerDependencies": {
@@ -85,7 +85,6 @@
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.12.0",
-    "@belgattitude/http-exception": "1.4.0",
     "@size-limit/file": "8.1.0",
     "@size-limit/webpack": "8.1.0",
     "@size-limit/webpack-why": "8.1.0",

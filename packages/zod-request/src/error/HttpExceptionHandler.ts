@@ -1,7 +1,4 @@
-import {
-  HttpBadRequest,
-  HttpMethodNotAllowed,
-} from '@belgattitude/http-exception';
+import { HttpBadRequest, HttpMethodNotAllowed } from '@httpx/exception';
 import type { z } from 'zod';
 import type { IErrorHandler } from './IErrorHandler';
 

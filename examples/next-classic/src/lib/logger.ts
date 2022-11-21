@@ -5,7 +5,7 @@
  *
  * @see https://github.com/belgattitude/http-exception
  */
-import { isHttpException } from '@belgattitude/http-exception';
+import { isHttpException } from '@httpx/exception';
 
 export interface LoggerInterface {
   log<T = unknown>(message: string, payload?: T): void;

@@ -1,6 +1,6 @@
-import type { HttpException } from '@belgattitude/http-exception';
-import { isHttpException } from '@belgattitude/http-exception';
-import { convertToSerializable } from '@belgattitude/http-exception/serializer';
+import type { HttpException } from '@httpx/exception';
+import { isHttpException } from '@httpx/exception';
+import { convertToSerializable } from '@httpx/exception/serializer';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { LoggerInterface } from '@/lib';
 import { ConsoleLogger } from '@/lib';
