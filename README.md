@@ -18,3 +18,19 @@
 ## Install
 
 ## Quick start
+
+## Support
+
+Open [an issue](https://github.com/belgattitude/nextvalid/issues).
+
+## Contributors
+
+Contributions are warmly appreciated. Have a look to the [CONTRIBUTING](https://github.com/belgattitude/httpx/blob/nextvalid/CONTRIBUTING.md) document.
+
+## Sponsors ♥
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+## License
+
+MIT
