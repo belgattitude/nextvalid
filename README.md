@@ -15,9 +15,9 @@
 
 Packages to help dealing with Nextjs parsing, validation, tranformations of server/middleware/edge requests.
 
-| Package                                          | Context                            | Version                                                                                                                                                |
-| ------------------------------------------------ | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [@nextvalid/zod-request](./packages/zod-request) | NextApiHandler, GetServerSideProps | [![npm](https://img.shields.io/npm/v/@nextvalid/zod-request?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@nextvalid/zod-request) |
+| Package                                                 | Context                            | Version                                                                                                                                                |
+| ------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [@nextvalid/zod-request](./packages/zod-request#readme) | NextApiHandler, GetServerSideProps | [![npm](https://img.shields.io/npm/v/@nextvalid/zod-request?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@nextvalid/zod-request) |
 
 ## Support
 
