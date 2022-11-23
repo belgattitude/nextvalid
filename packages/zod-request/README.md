@@ -32,29 +32,32 @@ yarn add @nextvalid/zod-request            # via yarn
 Define a schema
 
 ```typescript
+import type { NextApiHandler } from "next";
+import { zodReq } from "@nextvalid/zod-request";
 import { z } from "zod";
 
-const reqSchema = z.object({
+const schema = zodReq({
   method: "GET",
-  query: z.object({
-    email: z.string().email("Invalid email"),
-  }),
+  query: {
+    email: z.string().email("Invalid email").optional(),
+  },
+  headers: {
+    // authorization: z.string().regex(/^bearer /i),
+  },
 });
 
-const myApiRouteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // TODO
-  res.status(statusCode).json({
-    success: true,
-    data: {
-      statusCode: statusCode,
-      message: `${statusCode} is a not and error code, no reason to throw.`,
-    },
+const getHandler: NextApiHandler = async (req, res) => {
+  const { query, headers } = schema.parse(req);
+
+  const { email } = query; // email is typed to `string | undefined`
+  res.json({
+    email: email ? `Your email is ${email}` : `No email provided`,
   });
 };
 
 export default withApiErrorHandler({
   logger: new ConsoleLogger(),
-})(statusHandler);
+})(getHandler);
 ```
 
 ### SSR pages
