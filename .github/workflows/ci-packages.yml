@@ -86,7 +86,7 @@ jobs:
           yarn workspaces foreach -tv --no-private --since=origin/main run check-dist
 
       - name: Codecov upload
-        if: matrix.node-version == '16.x'
+        if: matrix.node-version == '18.x'
         uses: codecov/codecov-action@v3
         with:
           directory: ./packages/parse-request/coverage
