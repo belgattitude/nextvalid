@@ -1,6 +1,6 @@
 import { zodReq } from '@nextvalid/zod-request';
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiHandler } from 'next';
 import { z } from 'zod';
 import { withApiErrorHandler } from '@/backend';
 import { ConsoleLogger } from '@/lib';
@@ -21,7 +21,7 @@ const schema = zodReq({
 });
 
 // Try it out http://localhost:3000/api/basic/Guillermo?email=me@example.com
-const getHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const getHandler: NextApiHandler = async (req, res) => {
   const { query, headers, method } = schema.parse(req);
 
   const { name, email } = query;
