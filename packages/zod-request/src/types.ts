@@ -17,19 +17,18 @@ export type TupleOfHttpMethods = [HttpMethod, ...HttpMethod[]];
 /**
  * Well-known headers that aren't specifically covered by @types/node IncomingHttpHeaders
  */
-interface AdditionalRequestHeaders {
+type AdditionalRequestHeaders = {
   /**
    * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization
    */
   authorization: string;
-}
+};
 
 /**
  * @see https://developer.mozilla.org/en-US/docs/Glossary/Request_header
  */
-export type IncomingHttpHeadersKeys =
-  | keyof AdditionalRequestHeaders
-  | keyof IncomingHttpHeaders;
+export type IncomingHttpHeadersKeys = keyof (IncomingHttpHeaders &
+  AdditionalRequestHeaders);
 
 /**
  * Schema for validating api routes requests (a.k.a NextApiRequest)

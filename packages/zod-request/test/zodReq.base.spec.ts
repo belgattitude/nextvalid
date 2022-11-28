@@ -1,6 +1,7 @@
 import { HttpBadRequest, HttpMethodNotAllowed } from '@httpx/exception';
 import { z } from 'zod';
 import { zodReq } from '../src';
+import { ZodRequestError } from '../src/ZodRequestError';
 import { createNextRequest } from './_helpers';
 
 describe('zodReq tests', () => {
@@ -16,7 +17,7 @@ describe('zodReq tests', () => {
       const req = createNextRequest({
         method: 'POST',
       });
-      expect(() => zodReq({}).parse(req)).toThrow(HttpMethodNotAllowed);
+      expect(() => zodReq({}).parse(req)).toThrow(ZodRequestError);
     });
   });
 
@@ -62,7 +63,7 @@ describe('zodReq tests', () => {
             method: 'PATCH',
           })
         );
-      }).toThrow(HttpMethodNotAllowed);
+      }).toThrow(ZodRequestError);
     });
   });
 
@@ -76,7 +77,7 @@ describe('zodReq tests', () => {
             method: 'POST',
           })
         )
-      ).toThrow(HttpMethodNotAllowed);
+      ).toThrow(ZodRequestError);
     });
   });
 
@@ -95,7 +96,7 @@ describe('zodReq tests', () => {
             email: z.string().email('Invalid email'),
           },
         }).parse(req)
-      ).toThrow(HttpBadRequest);
+      ).toThrow(ZodRequestError);
     });
   });
 });

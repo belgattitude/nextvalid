@@ -10,7 +10,7 @@ import { ZodRequest } from './ZodRequest';
  * import { z } from 'zod';
  * import type { NextApiRequest, NextApiResponse } from 'next';
  *
- * export default apiRoute = async (req: NextApiRequest, res: NextApiResponse) => {
+ * const apiRoute: NextApiHandler = async (req, res) => {
  *   const schema = zodReq({
  *     method: 'GET',
  *     query: { email: z.string().email() },
@@ -20,6 +20,9 @@ import { ZodRequest } from './ZodRequest';
  *  const { query } = schema.parse(req);
  *  // query.email is string
  * }
+ *
+ * // Optionally enclose with an HOF that catches the exception
+ * export default apiRoute;
  * ```
  */
 export const zodReq = <S extends Partial<RequestSchema>>(
