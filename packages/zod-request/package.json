@@ -88,7 +88,7 @@
     "@size-limit/file": "8.1.0",
     "@size-limit/webpack": "8.1.0",
     "@size-limit/webpack-why": "8.1.0",
-    "@types/jest": "29.2.3",
+    "@types/jest": "29.2.4",
     "@types/node": "18.11.10",
     "@vitest/coverage-istanbul": "0.25.3",
     "@vitest/ui": "0.25.3",
