@@ -35,7 +35,7 @@ import type { NextApiHandler } from "next";
 import { zodReq } from "@nextvalid/zod-request";
 import { z } from "zod";
 
-const schema = zodReq({
+const zr = zodReq({
   method: "GET",
   query: {
     email: z.string().email("Invalid email").optional(),
@@ -46,7 +46,7 @@ const schema = zodReq({
 });
 
 const getHandler: NextApiHandler = async (req, res) => {
-  const { query, headers } = schema.parse(req);
+  const { query, headers } = zr.parse(req);
 
   const { email } = query; // email is typed to `string | undefined`
   res.json({

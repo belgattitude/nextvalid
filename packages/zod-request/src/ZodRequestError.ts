@@ -1,7 +1,5 @@
-import type { ZodError, ZodIssue } from 'zod';
-import type { RequestSchema } from './types';
-
-type ZodIssueWithoutPath = Omit<ZodIssue, 'path'>;
+import type { ZodError } from 'zod';
+import type { RequestSchema, ZodIssueWithoutPath } from './types';
 
 type RequestError<T extends RequestSchema> = {
   method: ZodIssueWithoutPath;
@@ -19,7 +17,7 @@ type RequestError<T extends RequestSchema> = {
 export class ZodRequestError<T extends RequestSchema> extends Error {
   public requestError: RequestError<T>;
   constructor(private zodError: ZodError) {
-    super('Error');
+    super('Request validation error.');
     this.requestError = this.getError();
   }
   getTypes() {

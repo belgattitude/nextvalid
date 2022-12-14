@@ -5,7 +5,7 @@ import { mapRequestSchemaToZod } from './utils';
 import { ZodRequestError } from './ZodRequestError';
 
 const schemaDefaults = {
-  method: 'GET',
+  method: ['GET', 'HEAD'],
   query: {},
   headers: {},
   cookies: {},
@@ -16,6 +16,11 @@ export class ZodRequest<T extends RequestSchema> {
     public readonly schema: T,
     private errorHandler?: IErrorHandler
   ) {}
+
+  /**
+   *
+   * @throws ZodRequestError in case of validation errors
+   */
   parse = (
     req: ParsableRequest
   ): z.infer<ReturnType<typeof mapRequestSchemaToZod<T>>> => {

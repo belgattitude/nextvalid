@@ -1,6 +1,6 @@
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { GetServerSidePropsContext, NextApiRequest } from 'next';
-import type { ZodType, z } from 'zod';
+import type { ZodType, z, ZodIssue } from 'zod';
 import type { httpMethods } from './constants';
 import type {
   mapRequestSchemaToZod,
@@ -139,3 +139,5 @@ export type ParsableGsspContext = {
   };
   locale?: GetServerSidePropsContext['locale'];
 };
+
+export type ZodIssueWithoutPath = Omit<ZodIssue, 'path'>;

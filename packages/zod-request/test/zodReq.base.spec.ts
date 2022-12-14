@@ -1,7 +1,5 @@
-import { HttpBadRequest, HttpMethodNotAllowed } from '@httpx/exception';
 import { z } from 'zod';
-import { zodReq } from '../src';
-import { ZodRequestError } from '../src/ZodRequestError';
+import { zodReq, ZodRequestError } from '../src';
 import { createNextRequest } from './_helpers';
 
 describe('zodReq tests', () => {

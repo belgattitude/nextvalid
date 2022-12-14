@@ -22,6 +22,7 @@ import { ZodRequest } from './ZodRequest';
  * }
  *
  * // Optionally enclose with an HOF that catches the exception
+ * // ie: withExceptionHandler(apiRoute)
  * export default apiRoute;
  * ```
  */

@@ -1,6 +1,12 @@
 import type { HttpException } from '@httpx/exception';
-import { isHttpException } from '@httpx/exception';
+import {
+  createHttpException,
+  HttpBadRequest,
+  HttpInternalServerError,
+  HttpMethodNotAllowed,
+} from '@httpx/exception';
 import { convertToSerializable } from '@httpx/exception/serializer';
+import { ZodRequestError } from '@nextvalid/zod-request';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import type { LoggerInterface } from '@/lib';
 import { ConsoleLogger } from '@/lib';
@@ -18,7 +24,7 @@ const defaultLogger = new ConsoleLogger();
  */
 export const withApiErrorHandler = (params?: Params) => {
   const { logger = defaultLogger, defaultStatusCode = 500 } = params ?? {};
-  return (handler: NextApiHandler) =>
+  return (handler: NextApiHandler): NextApiHandler =>
     async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
       try {
         await handler(req, res);
@@ -26,22 +32,36 @@ export const withApiErrorHandler = (params?: Params) => {
         // @see ./logger.ts
         logger.log(`[api-error] ${req.url}`, e);
 
-        // Example of specific error info
-        const payload = isHttpException(e)
-          ? {
-              // add anything that can be useful from HttpException
-              statusCode: e.statusCode,
+        let err: HttpException;
+        if (e instanceof ZodRequestError) {
+          if (e.requestError.method) {
+            err = new HttpMethodNotAllowed({
               message: e.message,
               url: req.url,
-              // Optionally
-              debug: getDebug(e),
-            }
-          : {
-              statusCode: defaultStatusCode,
-              message: e instanceof Error ? e.message : 'Unknown error',
-            };
+            });
+          } else {
+            err = new HttpBadRequest({
+              message: e.message,
+              url: req.url,
+            });
+          }
+        } else {
+          err = createHttpException(defaultStatusCode, {
+            message: e instanceof Error ? e.message : 'Unknown error',
+            url: req.url,
+          });
+        }
 
-        res.setHeader('content-type', 'application/json');
+        const payload = {
+          // add anything that can be useful from HttpException
+          statusCode: err.statusCode,
+          message: err.message,
+          url: req.url,
+          // Optionally
+          debug: getDebug(err),
+        };
+
+        res.setHeader('content-type', 'application/json; charset: utf-8');
         res.status(payload.statusCode).send(
           JSON.stringify(
             {

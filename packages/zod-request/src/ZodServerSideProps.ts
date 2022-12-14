@@ -15,6 +15,7 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
     public readonly schema: T,
     private errorHandler?: IErrorHandler
   ) {}
+
   parse = (
     context: ParsableGsspContext
   ): z.infer<ReturnType<typeof mapServerSidePropsSchemaToZod<T>>> => {

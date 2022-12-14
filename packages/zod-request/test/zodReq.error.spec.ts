@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import type { InferReqSchema } from '../src';
-import { zodReq } from '../src';
-import { ZodRequestError } from '../src/ZodRequestError';
+import { zodReq, ZodRequestError } from '../src';
 import { createNextRequest } from './_helpers';
 
 describe('zodReq error tests', () => {
@@ -23,7 +22,7 @@ describe('zodReq error tests', () => {
       const zr = zodReq({
         method: 'GET',
         query: {
-          name: z.string().min(8).regex(/^ABC/),
+          name: z.string().trim().min(8).regex(/^ABC/),
           email: z.string().email('Invalid email'),
         },
         headers: {
@@ -64,6 +63,7 @@ describe('zodReq error tests', () => {
       expect(errors?.query?.name).toStrictEqual([
         {
           code: 'too_small',
+          exact: false,
           inclusive: true,
           message: 'String must contain at least 8 character(s)',
           minimum: 8,

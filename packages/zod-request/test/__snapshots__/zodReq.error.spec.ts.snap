@@ -43,6 +43,7 @@ exports[`zodReq error tests > when query params are invalid > should throw HttpB
     "name": [
       {
         "code": "too_small",
+        "exact": false,
         "inclusive": true,
         "message": "String must contain at least 8 character(s)",
         "minimum": 8,
