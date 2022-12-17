@@ -43,7 +43,7 @@
     "nuke:node_modules": "rimraf '**/node_modules'"
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.12.0",
+    "@belgattitude/eslint-config-bases": "1.13.0",
     "@changesets/changelog-github": "0.4.7",
     "@changesets/cli": "2.25.2",
     "@commitlint/cli": "17.3.0",
