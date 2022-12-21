@@ -90,8 +90,8 @@
     "@size-limit/webpack-why": "8.1.0",
     "@types/jest": "29.2.4",
     "@types/node": "18.11.10",
-    "@vitest/coverage-istanbul": "0.25.3",
-    "@vitest/ui": "0.25.3",
+    "@vitest/coverage-istanbul": "0.26.2",
+    "@vitest/ui": "0.26.2",
     "cross-env": "7.0.3",
     "es-check": "7.0.1",
     "eslint": "8.30.0",
@@ -112,7 +112,7 @@
     "typescript": "4.9.4",
     "vite": "3.2.4",
     "vite-tsconfig-paths": "4.0.3",
-    "vitest": "0.25.3",
+    "vitest": "0.26.2",
     "webpack": "5.75.0"
   },
   "engines": {
