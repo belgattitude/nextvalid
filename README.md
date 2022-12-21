@@ -13,7 +13,7 @@
 
 ### Validation
 
-Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps` parameters.
+Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps` parameters with [Zod](https://github.com/colinhacks/zod).
 
 | Package                                                 | Context                            | Version                                                                                                                                                |
 | ------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
