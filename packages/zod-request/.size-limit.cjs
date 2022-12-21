@@ -22,6 +22,6 @@ module.exports = [
     path: ["dist/esm/index.js"],
     import: "*",
     webpack: true,
-    limit: "12KB",
+    limit: "13.5KB",
   },
 ];
