@@ -13,7 +13,7 @@
 
 ### Validation
 
-Packages to help dealing with Nextjs parsing, validation, tranformations of server/middleware/edge requests.
+Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps` parameters with [Zod](https://github.com/colinhacks/zod).
 
 | Package                                                 | Context                            | Version                                                                                                                                                |
 | ------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -25,7 +25,7 @@ Open [an issue](https://github.com/belgattitude/nextvalid/issues).
 
 ## Contributors
 
-Contributions are warmly appreciated. Have a look to the [CONTRIBUTING](https://github.com/belgattitude/httpx/blob/nextvalid/CONTRIBUTING.md) document.
+Contributions are warmly appreciated. Have a look to the [CONTRIBUTING](https://github.com/belgattitude/nextvalid/blob/main/CONTRIBUTING.md) document.
 
 ## Sponsors :heart:
 
