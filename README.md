@@ -13,7 +13,7 @@
 
 ### Validation
 
-Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps parameters.
+Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps` parameters.
 
 | Package                                                 | Context                            | Version                                                                                                                                                |
 | ------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
