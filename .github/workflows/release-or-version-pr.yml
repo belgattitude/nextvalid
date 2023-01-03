@@ -7,9 +7,12 @@ on:
 
 jobs:
   release:
+    name: Release and changelog
     # Security: the release job can only be executed from this repo and from the main branch (not a remote thing)
     if: ${{ github.repository == 'belgattitude/nextvalid' && contains('refs/heads/main',github.ref)}}
-    name: Release and changelog
+    permissions:
+      contents: write  #  to create release (changesets/action)
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
