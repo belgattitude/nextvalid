@@ -9,7 +9,7 @@ import type {
 import type { ZodRequest } from './ZodRequest';
 import type { ZodServerSideProps } from './ZodServerSideProps';
 
-export type HttpMethod = typeof httpMethods[number];
+export type HttpMethod = (typeof httpMethods)[number];
 export type HttpMethods = typeof httpMethods;
 
 export type TupleOfHttpMethods = [HttpMethod, ...HttpMethod[]];

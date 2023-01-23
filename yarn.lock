@@ -1680,7 +1680,6 @@ __metadata:
     "@types/jest": "npm:29.2.6"
     "@types/node": "npm:18.11.18"
     "@vitest/coverage-istanbul": "npm:0.28.1"
-    "@vitest/ui": "npm:0.28.1"
     cross-env: "npm:7.0.3"
     es-check: "npm:7.0.1"
     eslint: "npm:8.32.0"
@@ -1780,13 +1779,6 @@ __metadata:
     tiny-glob: "npm:^0.2.9"
     tslib: "npm:^2.4.0"
   checksum: 50c2480c3580c0f75b9325271deeb4f4cb24f6a29f1ebc5a7de0c6991380e23625fd554ecdbc7d7e93ad6dab92532a254f7490433cf2b8f1b18d75c9e01636ea
-  languageName: node
-  linkType: hard
-
-"@polka/url@npm:^1.0.0-next.20":
-  version: 1.0.0-next.21
-  resolution: "@polka/url@npm:1.0.0-next.21"
-  checksum: 53c1f28683a075aac41f8ce2a54eb952b6bc67a03494b2dca1cb63d833a6da898cea6a92df8e1e6b680db985fb7f9c16e11c20afa6584bcdda68a16fb4c18737
   languageName: node
   linkType: hard
 
@@ -2552,19 +2544,6 @@ __metadata:
   dependencies:
     tinyspy: "npm:^1.0.2"
   checksum: 2c1b355f83a6e268ab0900ba66b9c98185fd2ddd3cf553a9cf660bc2f41dccacdf8a6a69f891e43c377ce2773a93395863b6a3d9dbf9799dc034a73516d38648
-  languageName: node
-  linkType: hard
-
-"@vitest/ui@npm:0.28.1":
-  version: 0.28.1
-  resolution: "@vitest/ui@npm:0.28.1"
-  dependencies:
-    fast-glob: "npm:^3.2.12"
-    flatted: "npm:^3.2.7"
-    pathe: "npm:^1.1.0"
-    picocolors: "npm:^1.0.0"
-    sirv: "npm:^2.0.2"
-  checksum: 46776d589e120d1ce681ae82792801113983d0f45b6e1e68151c25e48a2933d829092e88be9a063fde8ae70eacb55dae92fb9d90be1a9ebfdc48381f030812cb
   languageName: node
   linkType: hard
 
@@ -5795,7 +5774,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flatted@npm:^3.1.0, flatted@npm:^3.2.7":
+"flatted@npm:^3.1.0":
   version: 3.2.7
   resolution: "flatted@npm:3.2.7"
   checksum: 207a87c7abfc1ea6928ea16bac84f9eaa6d44d365620ece419e5c41cf44a5e9902b4c1f59c9605771b10e4565a0cb46e99d78e0464e8aabb42c97de880642257
@@ -8475,13 +8454,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrmime@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "mrmime@npm:1.0.1"
-  checksum: ab071441da76fd23b3b0d1823d77aacf8679d379a4a94cacd83e487d3d906763b277f3203a594c613602e31ab5209c26a8119b0477c4541ef8555b293a9db6d3
-  languageName: node
-  linkType: hard
-
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -10396,17 +10368,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sirv@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "sirv@npm:2.0.2"
-  dependencies:
-    "@polka/url": "npm:^1.0.0-next.20"
-    mrmime: "npm:^1.0.0"
-    totalist: "npm:^3.0.0"
-  checksum: eb700ec65dc793e6b06e5f48b25071d93c251676253388886c7c9dacbcb2aa29e0d7b5c5566b5250f90e60d30ff775bb852e9e1ed1b2ba53a0b57b21b8ffc1db
-  languageName: node
-  linkType: hard
-
 "sisteransi@npm:^1.0.5":
   version: 1.0.5
   resolution: "sisteransi@npm:1.0.5"
@@ -11243,13 +11204,6 @@ __metadata:
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
   checksum: 93937279934bd66cc3270016dd8d0afec14fb7c94a05c72dc57321f8bd1fa97e5bea6d1f7c89e728d077ca31ea125b78320a616a6c6cd0e6b9cb94cb864381c1
-  languageName: node
-  linkType: hard
-
-"totalist@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "totalist@npm:3.0.0"
-  checksum: 025cc7e87f2e990d6aec29282c0e04ef526ad6d631b3c084df5ca5a34a9dbcb8fe69ed63a45da3a74192645aad8a12e0bc6ba8a0a9915d16789e9ecc84c3b220
   languageName: node
   linkType: hard
 

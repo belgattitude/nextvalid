@@ -2,7 +2,7 @@
   "name": "nextvalid-monorepo",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.0.0-rc.34",
+  "packageManager": "yarn@4.0.0-rc.36",
   "homepage": "https://github.com/belgattitude/next-helpers",
   "repository": {
     "type": "git",
@@ -32,15 +32,15 @@
     "g:check-dist": "yarn workspaces foreach -ptv run check-dist",
     "g:check-size": "yarn workspaces foreach -ptv run check-size",
     "g:release": "yarn g:build-packages && changeset publish",
-    "clean:lint": "rimraf --no-glob ./.cache/eslint",
-    "clean:global-cache": "rimraf --no-glob ./.cache",
+    "clean:lint": "rimraf ./.cache/eslint",
+    "clean:global-cache": "rimraf ./.cache",
     "deps:check": "yarn dlx npm-check-updates@latest --configFileName ncurc.yml --deep",
     "deps:update": "yarn dlx npm-check-updates@latest --configFileName ncurc.yml -u --deep",
     "docs:serve": "docsify serve ./docs",
     "check:install": "yarn dlx @yarnpkg/doctor@3.1 .",
     "postinstall": "is-ci || yarn husky install",
     "format": "prettier --config .prettierrc.js --cache --cache-location=\".cache/prettier/monorepo.prettiercache\" --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\" --write",
-    "nuke:node_modules": "rimraf '**/node_modules'"
+    "nuke:node_modules": "npx rimraf@3.0.1 '**/node_modules'"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.17.1",

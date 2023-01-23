@@ -42,9 +42,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rimraf --no-glob ./dist ./coverage ./tsconfig.tsbuildinfo",
+    "clean": "rimraf ./dist ./coverage ./tsconfig.tsbuildinfo",
     "build-doc": "run-s build-typedoc",
-    "build-typedoc": "rimraf --no-glob ./docs/api && typedoc --plugin typedoc-plugin-markdown --out ./docs/api",
+    "build-typedoc": "rimraf ./docs/api && typedoc --plugin typedoc-plugin-markdown --out ./docs/api",
     "prettier-check": "yarn run --top-level prettier --check --cache --cache-location=\"../../.cache/prettier/zod-request.prettiercache\" --config ../../.prettierrc.js --ignore-path ../../.prettierignore \"./**/*.{js,jsx,cjs,mjs,ts,tsx,mts,md,mdx,json,css,scss,less}\"",
     "prettier-fix": "yarn run --top-level prettier --write --cache --cache-location=\"../../.cache/prettier/zod-request.prettiercache\" --config ../../.prettierrc.js --ignore-path ../../.prettierignore \"./**/*.{js,jsx,cjs,mjs,ts,tsx,mts,md,mdx,json,css,scss,less}\"",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/parse-request.eslintcache",
@@ -54,7 +54,6 @@
     "check-size-why": "size-limit --why",
     "test": "vitest run",
     "test-unit": "vitest run",
-    "test-unit-watch": "vitest --ui",
     "test-unit-jest": "jest",
     "fix-all-files": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix"
   },
@@ -91,7 +90,6 @@
     "@types/jest": "29.2.6",
     "@types/node": "18.11.18",
     "@vitest/coverage-istanbul": "0.28.1",
-    "@vitest/ui": "0.28.1",
     "cross-env": "7.0.3",
     "es-check": "7.0.1",
     "eslint": "8.32.0",
