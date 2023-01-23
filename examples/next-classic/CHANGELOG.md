@@ -1,5 +1,12 @@
 # @examples/nextjs-simple
 
+## 0.10.1
+
+### Patch Changes
+
+- Updated dependencies [[`ff57878`](https://github.com/belgattitude/nextvalid/commit/ff5787809546b405eb3d40f7da22135b2e30fdee)]:
+  - @nextvalid/zod-request@0.4.0
+
 ## 0.10.0
 
 ### Minor Changes

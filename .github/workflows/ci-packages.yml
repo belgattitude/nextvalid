@@ -89,9 +89,9 @@ jobs:
         if: matrix.node-version == '18.x'
         uses: codecov/codecov-action@v3
         with:
-          directory: ./packages/parse-request/coverage
+          directory: ./packages/zod-request/coverage
           #files: ./packages/http-exception/coverage/clover.xml
-          flags: parse-request-unittests
+          flags: zod-request-unit
           fail_ci_if_error: false
           verbose: false
           working-directory: ${{ github.workspace }}

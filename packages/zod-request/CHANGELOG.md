@@ -1,5 +1,11 @@
 # @nextvalid/zod-request
 
+## 0.4.0
+
+### Minor Changes
+
+- [#41](https://github.com/belgattitude/nextvalid/pull/41) [`ff57878`](https://github.com/belgattitude/nextvalid/commit/ff5787809546b405eb3d40f7da22135b2e30fdee) Thanks [@belgattitude](https://github.com/belgattitude)! - Updated zod dependency to 3.20.2
+
 ## 0.3.0
 
 ### Minor Changes

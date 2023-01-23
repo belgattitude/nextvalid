@@ -11,10 +11,26 @@
 
 ## Documentation
 
-| Package                                            | Context                            | Version                                                                                                                                                |
-| -------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [@nextvalid/safe-request](./packages/safe-request) | NextApiHandler, GetServerSideProps | [![npm](https://img.shields.io/npm/v/@nextvalid/zod-request?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@nextvalid/zod-request) |
+### Validation
 
-## Install
+Parse and validate Next `API routes`, `getServerSideProps` and `getStaticProps` parameters with [Zod](https://github.com/colinhacks/zod).
 
-## Quick start
+| Package                                                 | Context                            | Version                                                                                                                                                |
+| ------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [@nextvalid/zod-request](./packages/zod-request#readme) | NextApiHandler, GetServerSideProps | [![npm](https://img.shields.io/npm/v/@nextvalid/zod-request?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@nextvalid/zod-request) |
+
+## Support
+
+Open [an issue](https://github.com/belgattitude/nextvalid/issues).
+
+## Contributors
+
+Contributions are warmly appreciated. Have a look to the [CONTRIBUTING](https://github.com/belgattitude/nextvalid/blob/main/CONTRIBUTING.md) document.
+
+## Sponsors :heart:
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+## License
+
+MIT
