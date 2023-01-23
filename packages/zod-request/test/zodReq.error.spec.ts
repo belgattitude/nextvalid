@@ -35,7 +35,7 @@ describe('zodReq error tests', () => {
           userLocale: z.enum(['fr', 'en']),
         },
       });
-      type Cool = InferReqSchema<typeof zr['schema']>;
+      type Cool = InferReqSchema<(typeof zr)['schema']>;
       const c: Cool = {
         method: 'GET',
         query: {
@@ -50,11 +50,11 @@ describe('zodReq error tests', () => {
         },
       };
 
-      let error: ZodRequestError<typeof zr['schema']> | null = null;
+      let error: ZodRequestError<(typeof zr)['schema']> | null = null;
       try {
         zr.parse(req);
       } catch (e) {
-        error = e as unknown as ZodRequestError<typeof zr['schema']>;
+        error = e as unknown as ZodRequestError<(typeof zr)['schema']>;
       }
       expect(error).toBeInstanceOf(ZodRequestError);
 
