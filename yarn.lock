@@ -417,9 +417,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@belgattitude/eslint-config-bases@npm:1.17.1":
-  version: 1.17.1
-  resolution: "@belgattitude/eslint-config-bases@npm:1.17.1"
+"@belgattitude/eslint-config-bases@npm:1.17.2":
+  version: 1.17.2
+  resolution: "@belgattitude/eslint-config-bases@npm:1.17.2"
   dependencies:
     "@rushstack/eslint-patch": "npm:^1.2.0"
     "@tanstack/eslint-plugin-query": "npm:4.21.0"
@@ -441,14 +441,18 @@ __metadata:
     eslint-plugin-tailwindcss: "npm:^3.8.0"
     eslint-plugin-testing-library: "npm:^5.9.1"
   peerDependencies:
+    "@angular-eslint/template-parser": ^15.2.0
     "@graphql-eslint/eslint-plugin": ^3.14.3
     eslint: ^8.29.0
     graphql: ^16.6.0
     prettier: ^2.7.0 || >= 3.0.0-alpha.4
     react: ^18.0.2
     react-dom: ^18.0.2
+    tailwindcss: ^3.2.2
     typescript: ^4.9.4
   peerDependenciesMeta:
+    "@angular-eslint/template-parser":
+      optional: true
     "@graphql-eslint/eslint-plugin":
       optional: true
     graphql:
@@ -459,9 +463,11 @@ __metadata:
       optional: true
     react-dom:
       optional: true
+    tailwindcss:
+      optional: true
     typescript:
       optional: true
-  checksum: 4cdeedb77def6fdbe448a3af9737bee6a49498867f8f090f7a998b0176eee63a5fd8db01eae34b00c2af9bec6e1b44aab24d9311e43aedec98beaf7eb64952ce
+  checksum: 2915585da7640732c32055e408cb030b5023df730781abe1d4a5500bd38fe40f613a908b739c3b7d32fd9de086ddfa4f4367ce315a8b278c6ba8c3115811bca3
   languageName: node
   linkType: hard
 
@@ -1149,7 +1155,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@examples/next-classic@workspace:examples/next-classic"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.17.1"
+    "@belgattitude/eslint-config-bases": "npm:1.17.2"
     "@httpx/exception": "npm:1.7.0"
     "@nextvalid/zod-request": "workspace:^"
     "@types/node": "npm:18.11.18"
@@ -1170,6 +1176,7 @@ __metadata:
     superjson: "npm:1.12.2"
     tailwindcss: "npm:3.2.4"
     typescript: "npm:4.9.4"
+    webpack: "npm:5.75.0"
     zod: "npm:3.20.2"
   languageName: unknown
   linkType: soft
@@ -1672,7 +1679,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nextvalid/zod-request@workspace:packages/zod-request"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.17.1"
+    "@belgattitude/eslint-config-bases": "npm:1.17.2"
     "@httpx/exception": "npm:^1.7.0"
     "@size-limit/file": "npm:8.1.2"
     "@size-limit/webpack": "npm:8.1.2"
@@ -8611,7 +8618,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nextvalid-monorepo@workspace:."
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.17.1"
+    "@belgattitude/eslint-config-bases": "npm:1.17.2"
     "@changesets/changelog-github": "npm:0.4.8"
     "@changesets/cli": "npm:2.26.0"
     "@commitlint/cli": "npm:17.4.2"
