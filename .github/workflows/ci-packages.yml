@@ -28,7 +28,7 @@ jobs:
           # @link https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
           fetch-depth: 0
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -36,7 +36,7 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Restore packages cache
+      - name: ♻️ Restore packages cache
         uses: actions/cache@v3
         with:
           path: |
@@ -47,31 +47,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-packages-cache-${{ hashFiles('**/yarn.lock') }}-
 
-      - name: Typecheck
+      - name: 🕵️ Typecheck
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run typecheck
 
-      - name: ESLint checks
+      - name: 🔬 ESLint checks
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run lint
 
-      - name: Unit tests
+      - name: 🧪 Unit tests
         run: |
           yarn workspaces foreach -tv --no-private run test-unit --coverage
 
-      - name: Build packages
+      - name: 🏗 Build packages
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run build
 
-      - name: Check build for size-limits
+      - name: 📐 Check build for size-limits
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run check-size
 
-      - name: Check build for ecmascript compliance
+      - name: 🛟 Check build for ecmascript compliance
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run check-dist
 
-      - name: Codecov upload
+      - name: ☂️ Codecov upload
         if: matrix.node-version == '18.x'
         uses: codecov/codecov-action@v3
         with:
@@ -82,6 +82,6 @@ jobs:
           verbose: false
           working-directory: ${{ github.workspace }}
 
-      - name: Check doc can be built
+      - name: 📄 Check doc can be built
         run: |
           yarn workspaces foreach -tv --no-private --since=origin/main run build-doc

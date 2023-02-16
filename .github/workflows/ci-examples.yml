@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -31,19 +31,19 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Pre build packages
+      - name: 🏗 Pre build packages
         run: yarn workspaces foreach -v --exclude '@examples/*' --no-private run build
 
-      - name: Typecheck (path aliases)
+      - name: 🕵️ Typecheck (with path aliases)
         run: yarn workspaces foreach -v --from '@examples/*' run typecheck
 
-      - name: Typecheck (no paths aliases)
+      - name: 🕵️ Typecheck (without paths aliases)
         run: yarn workspaces foreach -v --from '@examples/*' run typecheck-no-paths
 
-      - name: Lint
+      - name: 🔬 Lint
         run: yarn workspaces foreach -v --from '@examples/*' run lint
 
-      - name: Build example apps
+      - name: 🏗 Build example apps
         run: yarn workspaces foreach -v --from '@examples/*' run build
         env:
           NEXTJS_IGNORE_ESLINT: true
