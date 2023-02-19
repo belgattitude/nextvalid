@@ -83,12 +83,12 @@
     }
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.20.2",
+    "@belgattitude/eslint-config-bases": "1.21.0",
     "@size-limit/file": "8.2.4",
     "@size-limit/webpack": "8.2.4",
     "@size-limit/webpack-why": "8.2.4",
     "@types/jest": "29.4.0",
-    "@types/node": "18.13.0",
+    "@types/node": "18.14.0",
     "@vitest/coverage-istanbul": "0.28.5",
     "cross-env": "7.0.3",
     "es-check": "7.1.0",
@@ -108,7 +108,7 @@
     "typedoc": "0.23.25",
     "typedoc-plugin-markdown": "3.14.0",
     "typescript": "4.9.5",
-    "vite": "4.1.1",
+    "vite": "4.1.2",
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.28.5",
     "webpack": "5.75.0"
