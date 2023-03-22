@@ -1690,7 +1690,7 @@ __metadata:
     prettier: "npm:2.8.3"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
-    rimraf: "npm:4.1.1"
+    rimraf: "npm:4.4.1"
     size-limit: "npm:8.1.2"
     ts-jest: "npm:29.0.5"
     tslib: "npm:2.4.1"
@@ -6118,6 +6118,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob@npm:^9.2.0":
+  version: 9.3.2
+  resolution: "glob@npm:9.3.2"
+  dependencies:
+    fs.realpath: "npm:^1.0.0"
+    minimatch: "npm:^7.4.1"
+    minipass: "npm:^4.2.4"
+    path-scurry: "npm:^1.6.1"
+  checksum: 781d36a03ca1e57f43bc21163066be692ed15154b2a23322a1fd8eb45c20dc4f52fec99539e707780e9228c31e5b97185e2f226871d5ddde358046aaa47f324b
+  languageName: node
+  linkType: hard
+
 "global-dirs@npm:^0.1.1":
   version: 0.1.1
   resolution: "global-dirs@npm:0.1.1"
@@ -8085,10 +8097,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.7.1":
-  version: 7.14.0
-  resolution: "lru-cache@npm:7.14.0"
-  checksum: 88f1a8c2fd3bafc69121104740dcebc71e4ace97fb03f0ccf3b7d52df7dc10eedb78951af74f08437cf5fdb8c50d5956a0bcc944a073540f027efd8357f87cd1
+"lru-cache@npm:^7.14.1, lru-cache@npm:^7.7.1":
+  version: 7.18.3
+  resolution: "lru-cache@npm:7.18.3"
+  checksum: b3a452b491433db885beed95041eb104c157ef7794b9c9b4d647be503be91769d11206bb573849a16b4cc0d03cbd15ffd22df7960997788b74c1d399ac7a4fed
   languageName: node
   linkType: hard
 
@@ -8338,6 +8350,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^7.4.1":
+  version: 7.4.3
+  resolution: "minimatch@npm:7.4.3"
+  dependencies:
+    brace-expansion: "npm:^2.0.1"
+  checksum: 4b6ad079b032bedc48bc3bbf50d823bc54818e0fc9bca0e729c99cb65c90b31fb08ba91603a25b640e82a0de871c1c2c0e535f54981bd67cad59195b545cfe1a
+  languageName: node
+  linkType: hard
+
 "minimist-options@npm:4.1.0, minimist-options@npm:^4.0.2":
   version: 4.1.0
   resolution: "minimist-options@npm:4.1.0"
@@ -8413,6 +8434,13 @@ __metadata:
   dependencies:
     yallist: "npm:^4.0.0"
   checksum: f1bb39af4d6ce60f8a1e02e7ef7f09fffd882c83decb7edd5cb1711b6eff93b34833d1845b7883864f8fca2d2498b62c882fec735deff759c91444bf6e821266
+  languageName: node
+  linkType: hard
+
+"minipass@npm:^4.0.2, minipass@npm:^4.2.4":
+  version: 4.2.5
+  resolution: "minipass@npm:4.2.5"
+  checksum: 98ef3a4f0e7cbb2a152139069fd48eca331296948946c69fd569eee24d875e1dbbe989609b561b9ff8ecdc3438f46ed6c287efd150facd7d374a8fd6ba689d02
   languageName: node
   linkType: hard
 
@@ -8627,7 +8655,7 @@ __metadata:
     lint-staged: "npm:13.1.0"
     npm-run-all: "npm:4.1.5"
     prettier: "npm:2.8.3"
-    rimraf: "npm:4.1.1"
+    rimraf: "npm:4.4.1"
     shell-quote: "npm:1.7.4"
     typescript: "npm:4.9.4"
   languageName: unknown
@@ -9211,6 +9239,16 @@ __metadata:
   version: 1.0.7
   resolution: "path-parse@npm:1.0.7"
   checksum: 11ce261f9d294cc7a58d6a574b7f1b935842355ec66fba3c3fd79e0f036462eaf07d0aa95bb74ff432f9afef97ce1926c720988c6a7451d8a584930ae7de86e1
+  languageName: node
+  linkType: hard
+
+"path-scurry@npm:^1.6.1":
+  version: 1.6.3
+  resolution: "path-scurry@npm:1.6.3"
+  dependencies:
+    lru-cache: "npm:^7.14.1"
+    minipass: "npm:^4.0.2"
+  checksum: dbb64eb6beebc34bd971e21743aa720b0401a587051b36d7027f0a2526decff867d42e2e16e7a459d955e049e62b575da7ee39b74d4efa7e425e513806734585
   languageName: node
   linkType: hard
 
@@ -10074,6 +10112,17 @@ __metadata:
   bin:
     rimraf: dist/cjs/src/bin.js
   checksum: 904f38e84984d09d84e3d4d1eb992cf3f4b556b47e8eaa825836fba91a218c4d3226eb68cfc2cc2c98cf1832a6cbec79cf4224d6d69db8b5d685ec52ddc26eee
+  languageName: node
+  linkType: hard
+
+"rimraf@npm:4.4.1":
+  version: 4.4.1
+  resolution: "rimraf@npm:4.4.1"
+  dependencies:
+    glob: "npm:^9.2.0"
+  bin:
+    rimraf: dist/cjs/src/bin.js
+  checksum: 8c5e142d26d8b222be9dc9a1a41ba48e95d8f374e813e66a8533e87c6180174fcb3f573b9b592eca12740ebf8b78526d136acd971d4a790763d6f2232c34fa24
   languageName: node
   linkType: hard
 
