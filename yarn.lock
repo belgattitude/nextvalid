@@ -1681,7 +1681,7 @@ __metadata:
     "@types/node": "npm:18.11.18"
     "@vitest/coverage-istanbul": "npm:0.31.2"
     cross-env: "npm:7.0.3"
-    es-check: "npm:7.0.1"
+    es-check: "npm:7.1.1"
     eslint: "npm:8.32.0"
     get-tsconfig: "npm:4.3.0"
     jest: "npm:29.3.1"
@@ -2807,21 +2807,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"acorn@npm:8.8.2, acorn@npm:^8.4.1, acorn@npm:^8.5.0, acorn@npm:^8.7.1, acorn@npm:^8.8.0, acorn@npm:^8.8.2":
+  version: 8.8.2
+  resolution: "acorn@npm:8.8.2"
+  bin:
+    acorn: bin/acorn
+  checksum: b5c54e736af5ed753911c6752fafd02d0a74cf4d55be606bd81fe71faba4f986dc090952329931ac2aba165803fd0005c59eeef08f9c6c689e8dc420031f3df0
+  languageName: node
+  linkType: hard
+
 "acorn@npm:^7.0.0":
   version: 7.4.1
   resolution: "acorn@npm:7.4.1"
   bin:
     acorn: bin/acorn
   checksum: bd0b2c2b0f334bbee48828ff897c12bd2eb5898d03bf556dcc8942022cec795ac5bb5b6b585e2de687db6231faf07e096b59a361231dd8c9344d5df5f7f0e526
-  languageName: node
-  linkType: hard
-
-"acorn@npm:^8.4.1, acorn@npm:^8.5.0, acorn@npm:^8.7.0, acorn@npm:^8.7.1, acorn@npm:^8.8.0, acorn@npm:^8.8.2":
-  version: 8.8.2
-  resolution: "acorn@npm:8.8.2"
-  bin:
-    acorn: bin/acorn
-  checksum: b5c54e736af5ed753911c6752fafd02d0a74cf4d55be606bd81fe71faba4f986dc090952329931ac2aba165803fd0005c59eeef08f9c6c689e8dc420031f3df0
   languageName: node
   linkType: hard
 
@@ -3867,6 +3867,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:10.0.0":
+  version: 10.0.0
+  resolution: "commander@npm:10.0.0"
+  checksum: f1824812019664598ba7409c489cb5c15d33f65b43b08952a84e87e0023144c08d101e2f43af968cf2d464c0d667b50a2a9780f4a6c52915324f54fe9b451a31
+  languageName: node
+  linkType: hard
+
 "commander@npm:^2.20.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -3881,7 +3888,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^9.4.0, commander@npm:^9.4.1":
+"commander@npm:^9.4.1":
   version: 9.4.1
   resolution: "commander@npm:9.4.1"
   checksum: 04ea8ccc6fe3d3d1ca7ca26b06187498af8e6341a2c98b534528d504f8cad95b0c5ac2f3b78a7f0d332da16da9332db2ab9e43cb06241d367e9c7ee75cb76202
@@ -4735,18 +4742,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-check@npm:7.0.1":
-  version: 7.0.1
-  resolution: "es-check@npm:7.0.1"
+"es-check@npm:7.1.1":
+  version: 7.1.1
+  resolution: "es-check@npm:7.1.1"
   dependencies:
-    acorn: "npm:^8.7.0"
-    commander: "npm:^9.4.0"
-    fast-glob: "npm:^3.2.11"
+    acorn: "npm:8.8.2"
+    commander: "npm:10.0.0"
+    fast-glob: "npm:^3.2.12"
     supports-color: "npm:^8.1.1"
-    winston: "npm:^3.2.1"
+    winston: "npm:^3.8.2"
   bin:
     es-check: index.js
-  checksum: ac5bccbc665d662c8fd02d5132e57f60a050ccd618c3f893ae4103ee64f16c397b5328bc309e95c7b7ffca6be79247a0a6b4caef0dad0ae195eb0e0366544656
+  checksum: 5a9ad5b64cb87e1ce88ac8a6fcbe2dbb0cd6d80edf70a93faf1dc306c0b752a43218bb151fe54e51eaa7f8e67d37e2255fcb715399e6ccc236f8ad43e44bf187
   languageName: node
   linkType: hard
 
@@ -12179,9 +12186,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"winston@npm:^3.2.1":
-  version: 3.8.2
-  resolution: "winston@npm:3.8.2"
+"winston@npm:^3.8.2":
+  version: 3.9.0
+  resolution: "winston@npm:3.9.0"
   dependencies:
     "@colors/colors": "npm:1.5.0"
     "@dabh/diagnostics": "npm:^2.0.2"
@@ -12194,7 +12201,7 @@ __metadata:
     stack-trace: "npm:0.0.x"
     triple-beam: "npm:^1.3.0"
     winston-transport: "npm:^4.5.0"
-  checksum: 8d302d992e53e46c8f0355fae515356190d2dc9feaa8ae99afa5bba227f1fe2343ca9e367e5949a9b711f5f982e5b9280393d16be99fcd432660fd9597749954
+  checksum: e789b0c57bc3b0173c6fbd7caa4d60816a1a45cd796e5643e1bea65161d44c82a139b69f6ffc738a2919d80b5afc6df46c01947972173fc847ebcc668285fab3
   languageName: node
   linkType: hard
 
