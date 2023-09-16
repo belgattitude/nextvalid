@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 18.x]
+        node-version: [18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -62,28 +62,22 @@ jobs:
             ${{ runner.os }}-packages-cache-${{ hashFiles('**/yarn.lock') }}-
 
       - name: Typecheck
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run typecheck
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run typecheck
 
       - name: ESLint checks
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run lint
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run lint
 
       - name: Unit tests
-        run: |
-          yarn workspaces foreach -tv --no-private run test-unit --coverage
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run test-unit --coverage
 
       - name: Build packages
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run build
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run build
 
       - name: Check build for size-limits
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run check-size
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run check-size
 
       - name: Check build for ecmascript compliance
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run check-dist
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run check-dist
 
       - name: Codecov upload
         if: matrix.node-version == '18.x'
@@ -97,5 +91,4 @@ jobs:
           working-directory: ${{ github.workspace }}
 
       - name: Check doc can be built
-        run: |
-          yarn workspaces foreach -tv --no-private --since=origin/main run build-doc
+        run: yarn workspaces foreach -W -tv --from="./packages/**" run build-doc

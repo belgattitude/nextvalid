@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
 
@@ -44,19 +44,19 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Pre build packages
-        run: yarn workspaces foreach -v --exclude '@examples/*' --no-private run build
+        run: yarn workspaces foreach -W --exclude '@examples/*' --no-private run build
 
       - name: Typecheck (path aliases)
-        run: yarn workspaces foreach -v --from '@examples/*' run typecheck
+        run: yarn workspaces foreach -W --from '@examples/*' run typecheck
 
       - name: Typecheck (no paths aliases)
-        run: yarn workspaces foreach -v --from '@examples/*' run typecheck-no-paths
+        run: yarn workspaces foreach -W --from '@examples/*' run typecheck-no-paths
 
       - name: Lint
-        run: yarn workspaces foreach -v --from '@examples/*' run lint
+        run: yarn workspaces foreach -W --from '@examples/*' run lint
 
       - name: Build example apps
-        run: yarn workspaces foreach -v --from '@examples/*' run build
+        run: yarn workspaces foreach -W --from '@examples/*' run build
         env:
           NEXTJS_IGNORE_ESLINT: true
           NEXTJS_IGNORE_TYPECHECK: true
