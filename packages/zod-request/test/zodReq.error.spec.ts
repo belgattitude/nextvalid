@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import type { InferReqSchema } from '../src';
-import { zodReq, ZodRequestError } from '../src';
+import { zodReq, ZodRequestError, type InferReqSchema } from '../src';
 import { createNextRequest } from './_helpers';
 
 describe('zodReq error tests', () => {
@@ -54,7 +53,7 @@ describe('zodReq error tests', () => {
       try {
         zr.parse(req);
       } catch (e) {
-        error = e as unknown as ZodRequestError<(typeof zr)['schema']>;
+        error = e as ZodRequestError<(typeof zr)['schema']>;
       }
       expect(error).toBeInstanceOf(ZodRequestError);
 

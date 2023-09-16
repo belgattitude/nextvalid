@@ -1,7 +1,6 @@
 import { expectTypeOf } from 'vitest';
 import { z } from 'zod';
-import type { InferReqSchema } from '../src';
-import { zodReq } from '../src';
+import { zodReq, type InferReqSchema } from '../src';
 import { createNextRequest } from './_helpers';
 
 describe('zodReq type expectations', () => {

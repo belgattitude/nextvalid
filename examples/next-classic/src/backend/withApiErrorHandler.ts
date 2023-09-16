@@ -1,15 +1,13 @@
-import type { HttpException } from '@httpx/exception';
 import {
   createHttpException,
   HttpBadRequest,
-  HttpInternalServerError,
   HttpMethodNotAllowed,
+  type HttpException,
 } from '@httpx/exception';
 import { convertToSerializable } from '@httpx/exception/serializer';
 import { ZodRequestError } from '@nextvalid/zod-request';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import type { LoggerInterface } from '@/lib';
-import { ConsoleLogger } from '@/lib';
+import { ConsoleLogger, type LoggerInterface } from '@/lib';
 
 type Params = {
   logger?: LoggerInterface;
