@@ -42,7 +42,7 @@
     "nuke:node_modules": "rimraf --glob '**/node_modules'"
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.35.0",
+    "@belgattitude/eslint-config-bases": "2.6.0",
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.2",
     "@commitlint/cli": "17.7.1",
@@ -57,10 +57,10 @@
     "is-ci": "3.0.1",
     "lint-staged": "14.0.1",
     "npm-run-all": "4.1.5",
-    "prettier": "2.8.3",
+    "prettier": "3.0.3",
     "rimraf": "5.0.1",
     "shell-quote": "1.8.1",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "resolutions?": {
     "eslint-plugin-react-hooks": "https://github.com/vercel/next.js/issues/52365"
