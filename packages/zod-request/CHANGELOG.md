@@ -1,5 +1,13 @@
 # @nextvalid/zod-request
 
+## 0.5.0-canary.0
+
+### Minor Changes
+
+- [#64](https://github.com/belgattitude/nextvalid/pull/64) [`a1a53ae`](https://github.com/belgattitude/nextvalid/commit/a1a53ae4d01bc8c507eee379ebe7a90a087f9060) Thanks [@belgattitude](https://github.com/belgattitude)! - Drop node 16.x / upgrade to yarn 4.0.0-rc.50
+
+- [#71](https://github.com/belgattitude/nextvalid/pull/71) [`3263bab`](https://github.com/belgattitude/nextvalid/commit/3263bab39d9080ed61643d7b20c044133f875b79) Thanks [@belgattitude](https://github.com/belgattitude)! - Remove nextjs < 12 and react 17 support
+
 ## 0.4.0
 
 ### Minor Changes
