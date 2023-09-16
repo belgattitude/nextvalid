@@ -1,6 +1,5 @@
 import type { z } from 'zod';
-import type { IErrorHandler } from './error';
-import { HttpExceptionHandler } from './error';
+import { HttpExceptionHandler, type IErrorHandler } from './error';
 import type { ParsableRequest, RequestSchema } from './types';
 import { mapRequestSchemaToZod } from './utils';
 

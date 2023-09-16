@@ -65,7 +65,7 @@ export type InferReqSchema<T extends Partial<RequestSchema>> = z.infer<
 >;
 
 export type InferServerSidePropsSchema<
-  T extends Partial<ServerSidePropsSchema>
+  T extends Partial<ServerSidePropsSchema>,
 > = z.infer<
   ReturnType<
     typeof mapServerSidePropsSchemaToZod<{
@@ -85,7 +85,7 @@ export type InferServerSidePropsSchema<
 
 export type InferZodRequest<
   ZR extends ZodRequest<RequestSchema>,
-  T = ZR['schema']
+  T = ZR['schema'],
 > = z.infer<
   ReturnType<
     typeof mapRequestSchemaToZod<{
@@ -105,7 +105,7 @@ export type InferZodRequest<
 
 export type InferZodServerSideProps<
   ZR extends ZodServerSideProps<ServerSidePropsSchema>,
-  T = ZR['schema']
+  T = ZR['schema'],
 > = z.infer<
   ReturnType<
     typeof mapRequestSchemaToZod<{
