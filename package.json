@@ -17,30 +17,29 @@
     "packages/*"
   ],
   "scripts": {
-    "g:clean": "yarn clean:global-cache && yarn workspaces foreach -pv run clean",
-    "g:build": "yarn workspaces foreach -ptv run build",
+    "g:clean": "yarn clean:global-cache && yarn workspaces foreach -Wp run clean",
+    "g:build": "yarn workspaces foreach -Wpt run build",
     "g:build-packages": "yarn workspaces foreach -Wpt --from './packages/**' run build",
     "g:build-examples": "yarn workspaces foreach -Wpt --from './examples/**' run build",
     "g:build-doc": "yarn workspaces foreach -ptv run build-doc",
     "g:test": "yarn workspaces foreach -p run test",
-    "g:test-unit": "yarn workspaces foreach -v run test-unit",
-    "g:lint": "yarn workspaces foreach -v run lint",
-    "g:typecheck": "yarn workspaces foreach -v run typecheck",
+    "g:test-unit": "yarn workspaces foreach -W run test-unit",
+    "g:lint": "yarn workspaces foreach -W run lint",
+    "g:typecheck": "yarn workspaces foreach -W run typecheck",
     "g:lint-staged-files": "lint-staged --allow-empty",
-    "g:fix-all-files": "yarn workspaces foreach -ptv run fix-all-files",
+    "g:fix-all-files": "yarn workspaces foreach -Wpt run fix-all-files",
     "g:changeset": "changeset",
-    "g:check-dist": "yarn workspaces foreach -ptv run check-dist",
-    "g:check-size": "yarn workspaces foreach -ptv run check-size",
+    "g:check-dist": "yarn workspaces foreach -Wpt run check-dist",
+    "g:check-size": "yarn workspaces foreach -Wpt run check-size",
     "g:release": "yarn g:build-packages && changeset publish",
     "clean:lint": "rimraf ./.cache/eslint",
     "clean:global-cache": "rimraf ./.cache",
     "deps:check": "yarn dlx npm-check-updates@latest --configFileName ncurc.yml --deep",
     "deps:update": "yarn dlx npm-check-updates@latest --configFileName ncurc.yml -u --deep",
     "docs:serve": "docsify serve ./docs",
-    "check:install": "yarn dlx @yarnpkg/doctor@3.1 .",
     "postinstall": "is-ci || yarn husky install",
     "format": "prettier --config .prettierrc.js --cache --cache-location=\".cache/prettier/monorepo.prettiercache\" --ignore-path .prettierignore \"./*.{js,cjs,mjs,ts,mts,md,mdx,json}\" --write",
-    "nuke:node_modules": "npx rimraf@3.0.1 '**/node_modules'"
+    "nuke:node_modules": "rimraf --glob '**/node_modules'"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.35.0",
@@ -59,11 +58,11 @@
     "lint-staged": "13.1.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.3",
-    "rimraf": "4.1.1",
+    "rimraf": "5.0.1",
     "shell-quote": "1.7.4",
     "typescript": "4.9.4"
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.12"
   }
 }
