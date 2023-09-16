@@ -18,10 +18,11 @@ import { ZodRequest } from './ZodRequest';
  *  });
  *  // Will throw if `?=email=value` didn't pass validation
  *  const { query } = schema.parse(req);
- *  // query.email is string
+ *  // Otherwise
+ *  // -> query.email is string (validated as email)
  * }
  *
- * // Optionally enclose with an HOF that catches the exception
+ * // Optionally enclose with an HOF/middleware that catches the exception
  * // ie: withExceptionHandler(apiRoute)
  * export default apiRoute;
  * ```

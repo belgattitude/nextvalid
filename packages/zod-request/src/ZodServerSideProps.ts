@@ -17,8 +17,10 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
   ) {}
 
   parse = (
-    context: ParsableGsspContext
+    context: ParsableGsspContext,
+    errorHandler?: IErrorHandler
   ): z.infer<ReturnType<typeof mapServerSidePropsSchemaToZod<T>>> => {
+    const errHandler = errorHandler ?? this.errorHandler;
     const all = mapServerSidePropsSchemaToZod<T>(this.schema);
     const result = all.safeParse({
       method: context.req.method,
@@ -29,8 +31,8 @@ export class ZodServerSideProps<T extends ServerSidePropsSchema> {
     if (result.success) {
       return result.data;
     }
-    if (this.errorHandler) {
-      this.errorHandler.process(result.error);
+    if (errHandler) {
+      errHandler.process(result.error);
     }
     throw result.error;
   };
