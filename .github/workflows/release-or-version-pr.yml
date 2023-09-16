@@ -7,12 +7,9 @@ on:
 
 jobs:
   release:
-    name: Release and changelog
     # Security: the release job can only be executed from this repo and from the main branch (not a remote thing)
     if: ${{ github.repository == 'belgattitude/nextvalid' && contains('refs/heads/main',github.ref)}}
-    permissions:
-      contents: write  #  to create release (changesets/action)
-      pull-requests: write
+    name: Release and changelog
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -23,7 +20,7 @@ jobs:
           # @link https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
           fetch-depth: 0
 
-      - name: ⚙️ Setup node
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
@@ -31,7 +28,7 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: 🦋 Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:

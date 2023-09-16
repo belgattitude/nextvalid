@@ -3,27 +3,39 @@ name: CI-examples
 on:
   push:
     branches:
+      - dev
       - main
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-    branches:
-      - '**'
-    paths-ignore:
-      - 'docs/**'
+    # Only consider those paths to trigger the action
+    paths:
+      - 'examples/**'
+      - 'packages/**'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.github/workflows/**'
 
-permissions:
-  contents: read
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    # Only consider those paths to trigger the action
+    paths:
+      - 'examples/**'
+      - 'packages/**'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.github/workflows/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
 
-      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -31,20 +43,20 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: 🏗 Pre build packages
-        run: yarn workspaces foreach -v --exclude '@examples/*' --no-private run build
+      - name: Pre build packages
+        run: yarn workspaces foreach -W --exclude '@examples/*' --no-private run build
 
-      - name: 🕵️ Typecheck (with path aliases)
-        run: yarn workspaces foreach -v --from '@examples/*' run typecheck
+      - name: Typecheck (path aliases)
+        run: yarn workspaces foreach -W --from '@examples/*' run typecheck
 
-      - name: 🕵️ Typecheck (without paths aliases)
-        run: yarn workspaces foreach -v --from '@examples/*' run typecheck-no-paths
+      - name: Typecheck (no paths aliases)
+        run: yarn workspaces foreach -W --from '@examples/*' run typecheck-no-paths
 
-      - name: 🔬 Lint
-        run: yarn workspaces foreach -v --from '@examples/*' run lint
+      - name: Lint
+        run: yarn workspaces foreach -W --from '@examples/*' run lint
 
-      - name: 🏗 Build example apps
-        run: yarn workspaces foreach -v --from '@examples/*' run build
+      - name: Build example apps
+        run: yarn workspaces foreach -W --from '@examples/*' run build
         env:
           NEXTJS_IGNORE_ESLINT: true
           NEXTJS_IGNORE_TYPECHECK: true
