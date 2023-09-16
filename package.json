@@ -3,10 +3,10 @@
   "license": "MIT",
   "private": true,
   "packageManager": "yarn@4.0.0-rc.50",
-  "homepage": "https://github.com/belgattitude/next-helpers",
+  "homepage": "https://github.com/belgattitude/nextvalid",
   "repository": {
     "type": "git",
-    "url": "https://github.com/belgattitude/next-helpers"
+    "url": "https://github.com/belgattitude/nextvalid"
   },
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.35.0",
     "@changesets/changelog-github": "0.4.8",
-    "@changesets/cli": "2.26.1",
+    "@changesets/cli": "2.26.2",
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
     "@types/prettier": "2.7.2",
