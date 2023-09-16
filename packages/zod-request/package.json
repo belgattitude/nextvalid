@@ -83,7 +83,7 @@
     }
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.35.0",
+    "@belgattitude/eslint-config-bases": "1.39.0",
     "@size-limit/file": "9.0.0",
     "@size-limit/webpack": "9.0.0",
     "@size-limit/webpack-why": "9.0.0",
