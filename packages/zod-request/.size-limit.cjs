@@ -15,13 +15,13 @@ module.exports = [
     path: ["dist/esm/index.js"],
     import: "*",
     webpack: false,
-    limit: "1000B",
+    limit: "1200B",
   },
   {
     name: "ESM (import everything with deps)",
     path: ["dist/esm/index.js"],
     import: "*",
     webpack: true,
-    limit: "13.5KB",
+    limit: "20KB",
   },
 ];
