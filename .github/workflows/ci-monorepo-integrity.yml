@@ -2,23 +2,23 @@ name: CI-monorepo-integrity
 
 on:
   push:
-    branches:
-      - dev
-      - main
+    branches: [dev, main]
     paths:
       - 'yarn.lock'
       - '.yarnrc.yml'
       - '.github/**'
 
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - '**'
     paths:
       - 'yarn.lock'
       - '.yarnrc.yml'
       - '.github/**'
+
+permissions:
+  contents: read
 
 jobs:
   test:
