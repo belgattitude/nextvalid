@@ -5,5 +5,9 @@
     "@examples/next-classic": "0.10.1",
     "@nextvalid/zod-request": "0.4.0"
   },
-  "changesets": []
+  "changesets": [
+    "four-ghosts-joke",
+    "nasty-jobs-flash",
+    "spicy-houses-invent"
+  ]
 }

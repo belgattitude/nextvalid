@@ -1,5 +1,16 @@
 # @examples/nextjs-simple
 
+## 0.11.0-canary.0
+
+### Minor Changes
+
+- [#71](https://github.com/belgattitude/nextvalid/pull/71) [`3263bab`](https://github.com/belgattitude/nextvalid/commit/3263bab39d9080ed61643d7b20c044133f875b79) Thanks [@belgattitude](https://github.com/belgattitude)! - Update http/expection and zod to latest
+
+### Patch Changes
+
+- Updated dependencies [[`a1a53ae`](https://github.com/belgattitude/nextvalid/commit/a1a53ae4d01bc8c507eee379ebe7a90a087f9060), [`3263bab`](https://github.com/belgattitude/nextvalid/commit/3263bab39d9080ed61643d7b20c044133f875b79)]:
+  - @nextvalid/zod-request@0.5.0-canary.0
+
 ## 0.10.1
 
 ### Patch Changes
