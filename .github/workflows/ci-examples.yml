@@ -2,29 +2,18 @@ name: CI-examples
 
 on:
   push:
-    branches:
-      - dev
-      - main
-    # Only consider those paths to trigger the action
-    paths:
-      - 'examples/**'
-      - 'packages/**'
-      - '.yarnrc.yml'
-      - 'tsconfig.base.json'
-      - '.github/workflows/**'
-
+    branches: [dev, main]
+    paths-ignore:
+      - 'docs/**'
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    # Only consider those paths to trigger the action
-    paths:
-      - 'examples/**'
-      - 'packages/**'
-      - '.yarnrc.yml'
-      - 'tsconfig.base.json'
-      - '.github/workflows/**'
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - '**'
+    paths-ignore:
+      - 'docs/**'
+
+permissions:
+  contents: read
 
 jobs:
   test:
