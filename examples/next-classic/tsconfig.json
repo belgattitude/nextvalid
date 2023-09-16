@@ -22,14 +22,16 @@
       "@nextvalid/zod-request": ["../../packages/zod-request/src/index"]
     }
   },
+  "exclude": ["**/node_modules", ".next", "**/.*/*", "storybook-static"],
   "include": [
+    ".eslintrc.*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "**/*.cjs",
-    "**/*.mjs"
-  ],
-  "exclude": ["**/node_modules", "**/.*/"]
+    "**.*.cjs",
+    "**/*.mjs",
+    "**/*.json"
+  ]
 }
