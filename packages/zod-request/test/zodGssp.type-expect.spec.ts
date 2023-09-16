@@ -1,7 +1,7 @@
-import { assertType, expectTypeOf } from 'vitest';
+import { expectTypeOf } from 'vitest';
 import { z } from 'zod';
-import { zodGssp, zodReq, ZodServerSideProps } from '../src';
-import { createGsspContext, createNextRequest } from './_helpers';
+import { zodGssp } from '../src';
+import { createGsspContext } from './_helpers';
 
 describe('zodGssp type expectations', () => {
   it('should pass types and runtime checks', () => {

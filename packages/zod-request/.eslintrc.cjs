@@ -28,6 +28,7 @@ module.exports = {
   ],
   rules: {
     // optional overrides per project
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
   },
   overrides: [
     // optional overrides per project file match

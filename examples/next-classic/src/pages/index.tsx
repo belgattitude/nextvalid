@@ -1,5 +1,4 @@
-import type { InferZodServerSideProps } from '@nextvalid/zod-request';
-import { zodGssp } from '@nextvalid/zod-request';
+import { zodGssp, type InferZodServerSideProps } from '@nextvalid/zod-request';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { z } from 'zod';
 
@@ -42,6 +41,7 @@ export default function ssrRoute(
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
+  // eslint-disable-next-line @typescript-eslint/require-await
 ) => {
   const data = schema.parse(context);
   return {

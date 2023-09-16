@@ -1,4 +1,4 @@
-import { assertType, expectTypeOf } from 'vitest';
+import { expectTypeOf } from 'vitest';
 import { z } from 'zod';
 import { zodReq } from '../src';
 import { createNextRequest } from './_helpers';
