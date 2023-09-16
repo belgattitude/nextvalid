@@ -9,7 +9,6 @@
 [![techdebt](https://img.shields.io/codeclimate/tech-debt/belgattitude/nextvalid?label=TechDebt&logo=code-climate&style=for-the-badge&labelColor=444)](https://codeclimate.com/github/belgattitude/nextvalid)
 [![maintainability](https://img.shields.io/codeclimate/maintainability/belgattitude/nextvalid?label=Maintainability&logo=code-climate&style=for-the-badge&labelColor=444)](https://codeclimate.com/github/belgattitude/nextvalid)
 [![license](https://img.shields.io/npm/l/@nextvalid/zod-request?style=for-the-badge&labelColor=000000)](https://github.com/belgattitude/nextvalid/blob/main/LICENSE)
-[![ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/belgattitude)
 
 ## Highlights
 
@@ -67,14 +66,12 @@ export default withApiErrorHandler({
 
 Open [an issue](https://github.com/belgattitude/nextvalid/issues).
 
-## Contributors
+## Sponsors
 
-Contributions are warmly appreciated. Have a look to the [CONTRIBUTING](https://github.com/belgattitude/httpx/blob/nextvalid/CONTRIBUTING.md) document.
-
-## Sponsors ♥
-
-If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+If my OSS work brightens your day, let's take it to new heights together!
+[Sponsor](<[sponsorship](https://github.com/sponsors/belgattitude)>), [coffee](<(https://ko-fi.com/belgattitude)>),
+or star – any gesture of support fuels my passion to improve. Thanks for being awesome! 🙏❤️
 
 ## License
 
-MIT
+MIT © [belgattitude](https://github.com/belgattitude) and contributors.
