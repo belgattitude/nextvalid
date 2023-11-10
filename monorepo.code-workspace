@@ -11,14 +11,14 @@
     {
       "name": "📦 zod-request",
       "path": "packages/zod-request"
-    },
+    }
   ],
   "extensions": {
     "recommendations": [
       "folke.vscode-monorepo-workspace",
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
-      "ZixuanChen.vitest-explorer",
+      "ZixuanChen.vitest-explorer"
     ]
   },
   "settings": {

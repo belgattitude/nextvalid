@@ -108,7 +108,7 @@ export type InferZodServerSideProps<
   T = ZR['schema'],
 > = z.infer<
   ReturnType<
-    typeof mapRequestSchemaToZod<{
+    typeof mapServerSidePropsSchemaToZod<{
       method: RequestSchema['method'];
       query: T['query'] extends undefined
         ? Record<string, never>
